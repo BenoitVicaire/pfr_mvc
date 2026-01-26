@@ -1,0 +1,22 @@
+{
+  "name": "pfr_new",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "sass": "^1.97.3",
+    "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "flag-icons": "^7.5.0"
+  }
+}
