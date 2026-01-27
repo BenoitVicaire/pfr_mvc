@@ -5,11 +5,13 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 require_once __DIR__ . '/../models/forumModel.php';
 
-use App\Model\LoginModel\LoginRepository;
+use App\Model\ForumModel\ForumRepository;
 use App\Utils\Database\DatabaseConnection;
 
 class Forum{
     public function displayForum(){
+        $forumRepository = new ForumRepository(new DatabaseConnection());
+        $threads = $forumRepository->getThreads();
         require __DIR__ . '/../../templates/forum/forum.php';
     }
 }

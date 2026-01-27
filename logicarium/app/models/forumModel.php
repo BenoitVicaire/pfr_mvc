@@ -11,8 +11,9 @@ class ForumRepository{
     
     public function getThreads(){
         $statement=
-        "SELECT t.title, t.content, t.created_by, t.creation_date
-        FROM thread t";
+        "SELECT t.title, t.content, t.created_by, t.creation_date, t.last_update
+        FROM thread t
+        ORDER BY COUNT t.last_update DESC";
 
         return $this->connection
             ->getConnection()
