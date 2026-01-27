@@ -1,15 +1,12 @@
 <?php
-namespace Application\Controllers\Homepage;
+namespace App\Controllers\HomepageController;
 
-require('../templates/header.php');
-require('../templates/footer.php');
-require('../templates/homepage.php');
 
 use App\utils\Database\DatabaseConnection;
 
 class Homepage
 {
-    public function execute()
+    public function displayHomepage()
     {
         require('templates/homepage.php');
     }

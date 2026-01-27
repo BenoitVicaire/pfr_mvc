@@ -1,0 +1,29 @@
+{# Crer une classe: #}
+    mode(public/private/protected)
+
+class Nom_de_classe(){
+    -"declaration de var":
+        mode type $variable;
+
+    -"creation methode:
+    mode function nomFunction(params:type) : type "retour function"(optionel){
+        expression
+        return X;
+    }
+
+}
+-constructeur:
+    public function __construct(type $var){
+        $this->var = $value;
+    }
+-affectation de valeur a des variable de classe:
+    $instance_de_class= new Nom_classe();
+    $instance_de_class->nom_var = valeur;
+        On peux aussi faire si la méthode existe:
+        $instance_de_classe->setNomVar(value);
+
+
+-appelle methode de classe:   
+    (new Nom_de_classe())->nom_function(params);
+
+

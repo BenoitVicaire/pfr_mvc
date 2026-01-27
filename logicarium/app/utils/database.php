@@ -1,15 +1,24 @@
 <?php
 
-namespace App\utils\Database;
+namespace App\Utils\Database;
 
 class DatabaseConnection
 {
-    public ?\PDO $database = null;
+    private ?\PDO $database = null;
 
     public function getConnection(): \PDO
     {
         if ($this->database === null) {
-            $this->database = new \PDO('mysql:host=localhost;dbname=logicariumDB;charset=utf8', 'root', 'root');
+            $this->database = new \PDO(
+                'mysql:host=localhost;
+                dbname=logicariumDB;
+                charset=utf8',
+                'root',
+                'root',
+                [
+                    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+                    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
+                ]);
         }
 
         return $this->database;

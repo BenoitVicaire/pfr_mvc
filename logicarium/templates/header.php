@@ -1,8 +1,11 @@
-<?php 
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ob_start(); 
 
 $loggedState=false;
-if($_SESSION['LOGGED_USER']){$loggedState=true;} ?>
+if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
 
 <link rel="stylesheet" href="../public/assets/icons/flag-icons.css">
 <header>
@@ -25,9 +28,9 @@ if($_SESSION['LOGGED_USER']){$loggedState=true;} ?>
                 </div>
             </div>
             <div class="header_top_left_right">
-                <?php if(isset($_SESSION['LOGGED_USER'])){?>                   
+                <?php if(isset($_SESSION['logged'])){?>                   
                 <a href="index.php?action=myProfil">my profil</a>
-                <a href="index.php?action=login">Logout</a>
+                <a href="index.php?action=logout">Logout</a>
                 <?php }else{?>
                     <a href="index.php?action=login">Login</a>
                 <?php } ?>
@@ -48,7 +51,7 @@ if($_SESSION['LOGGED_USER']){$loggedState=true;} ?>
         </div>
     </div>
     <nav>
-        <a href="pages/forum.html" id="forum">Forum</a>
+        <a href="index.php?action=forum" id="forum">Forum</a>
         <a href="pages/protect_the_dungeon.html" id="ptd">Protect the dungeon</a>
         <a href="pages/contact.html" id="contact">Contact</a>
     </nav>
