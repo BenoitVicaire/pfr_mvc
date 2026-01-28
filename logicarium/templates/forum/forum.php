@@ -3,7 +3,7 @@ ob_start() ?>
 
 <main>
     <section class="heading">
-
+        <h2>Forum</h2>
     </section>
     <section class="ForumCore">
         <?php 
@@ -12,14 +12,19 @@ ob_start() ?>
                 <h3>
                     <?= htmlspecialchars($thread->title); ?>
                 </h3>
+                <div class="threadPreview">
+                    <?= htmlspecialchars($thread->content); ?>
+                </div>
                 <div class="threadDetail">
-                     <?= $thread->creation_date ?>
+                    <span class="threadCreatedBy"><?= htmlspecialchars($thread->created_by); ?></span>
+                    <span class="threadCreatedAt"><?= htmlspecialchars($thread->created_at); ?></span>
+                    <span class="threadLastUpdate"><?= htmlspecialchars($thread->last_update); ?></span>
                 </div>
             </div>
         <?php    
         }?>
     </section>
-    <h2>Forum</h2>
+    
 </main>
 
 <?php $content = ob_get_clean(); ?>
