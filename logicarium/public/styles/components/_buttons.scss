@@ -1,0 +1,18 @@
+@use "../utils/variable";
+@mixin btn(){
+    border: none;
+    background-color: variable.$main_white;
+    font-size: large;
+
+    &:hover{
+        color: blue;
+        font-size: larger;
+    }
+}
+
+@keyframes hoverbouton {
+    100%{
+        translate: -2px -2px;
+        box-shadow: 2px 2px variable.$main_white;
+    }
+}

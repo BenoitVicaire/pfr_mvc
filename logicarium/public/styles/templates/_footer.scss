@@ -1,0 +1,21 @@
+@use "../utils/variable";
+
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color:variable.$background_tertiary ;
+    height: 40px;
+    margin: 0 auto;
+
+    a{
+        color:variable.$main_white;
+        text-decoration: none;
+        margin: 5px;
+        &:hover{
+            background-color: variable.$background_secondary;
+            color: variable.$main_text;
+        }
+    }
+}

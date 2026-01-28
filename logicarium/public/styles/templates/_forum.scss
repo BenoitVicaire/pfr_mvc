@@ -1,0 +1,62 @@
+@use "../utils/variable";
+
+.heading{
+    // background-color: aqua;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    height: 30px;
+    border-bottom: solid black 2px;
+
+    color: variable.$main_white;
+
+    h2{
+        width: 120px;
+        margin-left: 5px;
+        
+        
+    }
+    .breadCrumb{
+        font-family: variable.$font_main;
+    }
+}
+.thread{
+    border-bottom: solid black 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .threadDetail{
+        width: 400px;
+        background-color: aqua;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows:auto auto ;
+
+        .threadLabelCreatedBy{
+            grid-column: 1;
+            grid-row: 1;
+        }
+        .threadCreatedBy{
+            grid-column: 2;
+            grid-row: 1;
+        }
+        .threadCreatedAt{
+            grid-column: 3;
+            grid-row: 1;
+        }
+        .threadLabelLastAnswer{
+            grid-column: 1;
+            grid-row: 2;
+        }
+        .threadLastAnswer{
+            grid-column: 2;
+            grid-row: 2;
+        }
+        .threadLastUpdate{
+            grid-column: 3;
+            grid-row: 2;
+        }
+    }
+}

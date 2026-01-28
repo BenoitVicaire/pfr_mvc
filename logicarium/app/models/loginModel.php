@@ -4,7 +4,7 @@ namespace App\model\LoginModel;
 
 use App\Utils\Database\DatabaseConnection;
 
-Class LoginRepository{
+class LoginRepository{
     private DatabaseConnection $connection;
 
     public function __construct(DatabaseConnection $connection){
@@ -25,7 +25,7 @@ Class LoginRepository{
 
     public function createAccount(string $email, string $password, string $name) : bool{
         $statement = $this->connection->getConnection()->prepare(
-            "INSERT INTO users (`email`, `password`, `name`, `creation_date`)
+            "INSERT INTO users (`email`, `password`, `name`, `created_at`)
             VALUES(?, ?, ?, NOW())"
         );
         return $statement->execute(([$email,$password,$name]));

@@ -1,43 +1,15 @@
-// Variable de style
-// Font
-$font_title: "Cinzel Decorative", serif;
-$font_subtitle: 'MedievalSharp', cursive;
-$font_main: 'Roboto', sans-serif;
-// Color
-$main_text : #101010;
-$main_blue : #25324B;
-$main_red : #E15554;
-$main_white : #D9D9D9;
-$background_secondary : #D9D9D9;
-$background_tertiary : #141414;
-
-@mixin btn(){
-    border: none;
-    background-color: $main_white;
-    font-size: large;
-
-    &:hover{
-        color: blue;
-        font-size: larger;
-    }
-}
-
-@keyframes hoverbouton {
-    100%{
-        translate: -2px -2px;
-        box-shadow: 2px 2px $main_white;
-    }
-}
+@use "../utils/variable";
+@use "../components/buttons";
 
 header {
-    background-color: $background_secondary;
+    background-color: variable.$background_secondary;
     // width: 978px;
     margin: auto;
-    font-family:$font_subtitle ;
+    font-family:variable.$font_subtitle ;
     
     button{
-        font-family: $font_subtitle;
-        @include btn();
+        font-family: variable.$font_subtitle;
+        @include buttons.btn();
     }
 }
 
@@ -91,8 +63,8 @@ header {
             width: 300px;
             text-align: center;
             h3{
-                font-family: $font_subtitle;
-                color: $main_white;
+                font-family: variable.$font_subtitle;
+                color: variable.$main_white;
                 font-size: large;
             }
         }
@@ -100,7 +72,7 @@ header {
         float: right;
         font-size: 1.5rem;
         cursor: pointer;
-        background-color: $background_secondary;
+        background-color: variable.$background_secondary;
         }
         .avatars img {
         cursor: pointer;
@@ -161,12 +133,12 @@ nav{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: $background_tertiary;
+    background-color: variable.$background_tertiary;
     height: 40px;
 
 
     a{
-        color: $main_white;
+        color: variable.$main_white;
         text-decoration: none;
         padding: 10px;
         // border-top: 2px solid $main_red;
@@ -188,76 +160,3 @@ nav{
         
     }
 }
-html, body {
-    height: 100%;
-    margin: 0;
-}
-body{
-    display: flex;
-    flex-direction: column;
-    background-image: url("../assets/images/background_tech.jpg") ;
-}
-main {
-    flex:1;
-    background-color: $main_blue;
-    margin: auto;
-}
-.article{
-    display: flex;
-    flex-direction: column;
-    width: 562px;
-    margin: auto;
-
-    h2{
-        font-family: $font_title;
-        color: $main_white;
-    }
-    p{
-        font-family:$font_main;
-        color: $main_white; 
-    }
-}
-
-footer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color:$background_tertiary ;
-    height: 40px;
-    margin: 0 auto;
-
-    a{
-        color:$main_white;
-        text-decoration: none;
-        margin: 5px;
-        &:hover{
-            background-color: $background_secondary;
-            color: $main_text;
-        }
-    }
-}
-.errorContainer{
-    width: 978px;
-    height: 100%;
-    background-color: $main_white;
-    margin: auto;
-}
-
-// .article_column{
-//     width:562px ;
-//     margin: auto;
-// }
-@media screen and (min-width:978px) {
-    .article_column,nav,header,footer{
-        width: 978px;
-        margin: auto;
-    }
-    
-    
-}
-
-
-
-
-

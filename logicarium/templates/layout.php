@@ -19,7 +19,9 @@ require('footer.php');
     <header>
         <?= $header ?>
     </header>
-    <?= $content ?>
+    <main>
+        <?= $content ?>
+    </main>
     <footer>
         <?= $footer ?>
     </footer>

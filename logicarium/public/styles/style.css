@@ -145,38 +145,6 @@ nav a:hover {
   animation-fill-mode: forwards;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  background-image: url("../assets/images/background_tech.jpg");
-}
-
-main {
-  flex: 1;
-  background-color: #25324B;
-  margin: auto;
-}
-
-.article {
-  display: flex;
-  flex-direction: column;
-  width: 562px;
-  margin: auto;
-}
-.article h2 {
-  font-family: "Cinzel Decorative", serif;
-  color: #D9D9D9;
-}
-.article p {
-  font-family: "Roboto", sans-serif;
-  color: #D9D9D9;
-}
-
 footer {
   display: flex;
   flex-direction: row;
@@ -200,6 +168,94 @@ footer a:hover {
   width: 978px;
   height: 100%;
   background-color: #D9D9D9;
+  margin: auto;
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+  width: 562px;
+  margin: auto;
+}
+.article h2 {
+  font-family: "Cinzel Decorative", serif;
+  color: #D9D9D9;
+}
+.article p {
+  font-family: "Roboto", sans-serif;
+  color: #D9D9D9;
+}
+
+.heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  height: 30px;
+  border-bottom: solid black 2px;
+  color: #D9D9D9;
+}
+.heading h2 {
+  width: 120px;
+  margin-left: 5px;
+}
+.heading .breadCrumb {
+  font-family: "Roboto", sans-serif;
+}
+
+.thread {
+  border-bottom: solid black 2px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.thread .threadDetail {
+  width: 400px;
+  background-color: aqua;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto;
+}
+.thread .threadDetail .threadLabelCreatedBy {
+  grid-column: 1;
+  grid-row: 1;
+}
+.thread .threadDetail .threadCreatedBy {
+  grid-column: 2;
+  grid-row: 1;
+}
+.thread .threadDetail .threadCreatedAt {
+  grid-column: 3;
+  grid-row: 1;
+}
+.thread .threadDetail .threadLabelLastAnswer {
+  grid-column: 1;
+  grid-row: 2;
+}
+.thread .threadDetail .threadLastAnswer {
+  grid-column: 2;
+  grid-row: 2;
+}
+.thread .threadDetail .threadLastUpdate {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../assets/images/background_tech.jpg");
+}
+
+main {
+  width: 978px;
+  flex: 1;
+  background-color: #25324B;
   margin: auto;
 }
 

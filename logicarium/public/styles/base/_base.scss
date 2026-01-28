@@ -1,0 +1,24 @@
+@use "../utils/variable";
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    background-image: url("../assets/images/background_tech.jpg") ;
+}
+main {
+    width: 978px;
+    flex:1;
+    background-color: variable.$main_blue;
+    margin: auto;
+}
+
+@media screen and (min-width:978px) {
+    .article_column,nav,header,footer{
+        width: 978px;
+        margin: auto;
+    }
+}

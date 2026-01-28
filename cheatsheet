@@ -26,4 +26,7 @@ class Nom_de_classe(){
 -appelle methode de classe:   
     (new Nom_de_classe())->nom_function(params);
 
-
+{# Gerer les urls #}
+/   Racine du serveur web
+./  Répertoire courant
+../ Dossier parent

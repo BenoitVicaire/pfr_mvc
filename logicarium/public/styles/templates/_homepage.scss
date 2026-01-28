@@ -1,0 +1,21 @@
+@use "../utils/variable";
+
+.article{
+    display: flex;
+    flex-direction: column;
+    width: 562px;
+    margin: auto;
+
+    h2{
+        font-family: variable.$font_title;
+        color: variable.$main_white;
+    }
+    p{
+        font-family:variable.$font_main;
+        color: variable.$main_white; 
+    }
+}
+// .article_column{
+//     width:562px ;
+//     margin: auto;
+// }

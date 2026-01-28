@@ -1,0 +1,8 @@
+@use "../utils/variable";
+
+.errorContainer{
+    width: 978px;
+    height: 100%;
+    background-color: variable.$main_white;
+    margin: auto;
+}

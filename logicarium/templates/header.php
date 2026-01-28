@@ -52,7 +52,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
     </div>
     <nav>
         <a href="index.php?action=forum" id="forum">Forum</a>
-        <a href="pages/protect_the_dungeon.html" id="ptd">Protect the dungeon</a>
+        <a href="index.php" id="ptd">Accueil</a>
         <a href="pages/contact.html" id="contact">Contact</a>
     </nav>
 </header>
