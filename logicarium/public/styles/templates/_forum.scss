@@ -15,10 +15,27 @@
         width: 120px;
         margin-left: 5px;
         
-        
     }
     .breadCrumb{
         font-family: variable.$font_main;
+    }
+    .forumBoutonContainer{
+        align-self: center;
+        margin-left: auto;
+        margin-right: 5px;
+
+        a{
+            color:variable.$main_white;
+            font-family: variable.$font_subtitle;
+
+        }
+        a:link{
+            text-decoration: none;
+        }
+        a:hover{
+            color: variable.$link_emphase;
+            text-decoration: underline;
+        }
     }
 }
 .thread{
@@ -26,15 +43,17 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    color:variable.$main_white;
 
     .threadDetail{
         width: 400px;
-        background-color: aqua;
+        border-left: solid black 2px;
         display: grid;
         grid-template-columns: auto auto auto;
         grid-template-rows:auto auto ;
 
         .threadLabelCreatedBy{
+            margin-left: 5px;
             grid-column: 1;
             grid-row: 1;
         }
@@ -59,4 +78,91 @@
             grid-row: 2;
         }
     }
+    .threadLeft{
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        height: 50px;
+        justify-content: flex-start;
+        
+
+        .threadLeftTop{
+            margin: 0;
+            gap: 0;
+            padding: 0;
+            border-bottom: solid black 1px;
+            margin-left: 5px;
+        }
+        .threadDescription{
+            flex:1;
+            margin-left: 5px;
+            margin-top: 4px;
+        }
+    }
+}
+.formCreateThread {
+    align-items: start;
+    padding-top: 10px;
+    margin: auto;
+    width: 100%;
+    gap:5px;
+
+    display: grid;
+    grid-template-columns: 1fr 500px 1fr;
+    grid-template-rows: 20px 38px 300px auto;
+
+
+    #formCreateThreadTitle{
+        grid-column: 2;
+        grid-row: 1;
+        // input{
+        //     width: 100%;            
+        //     box-sizing: border-box;
+        // }
+    }
+    #formCreateThreadDescription{
+        grid-column: 2;
+        grid-row: 2;
+    }
+    #formCreateThreadContent{
+        grid-column: 2;
+        grid-row: 3;
+    }
+    #formCreateThreadContent,textarea{
+        height: 100%;
+    }
+    button{
+        grid-column: 2;
+        grid-row: 4;
+    }
+    .formInputArea,textarea,input{
+        width: 100%;            
+        box-sizing: border-box;
+    }
+    .labelCell{
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+    h6{
+        margin: 0;
+        margin-right: 5px;
+        margin-top: 7px;
+        color: variable.$main_white;
+        font-family: variable.$font_subtitle;
+    }
+    #formCreateThreadTitleLabel{
+        grid-column: 1;
+        grid-row: 1;
+    }
+    #formCreateThreadDescriptionLabel{
+        grid-column: 1;
+        grid-row: 2;
+    }
+    #formCreateThreadContentLabel{
+        grid-column: 1;
+        grid-row: 3;
+    }
+    
+
 }

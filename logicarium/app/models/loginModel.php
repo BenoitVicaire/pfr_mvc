@@ -3,6 +3,13 @@
 namespace App\model\LoginModel;
 
 use App\Utils\Database\DatabaseConnection;
+class User{
+    public int $id;
+    public string $name;
+    public string $password;
+    public string $created_at;
+    public string $email;
+}
 
 class LoginRepository{
     private DatabaseConnection $connection;
@@ -23,11 +30,15 @@ class LoginRepository{
         return $user;
     }
 
-    public function createAccount(string $email, string $password, string $name) : bool{
+    public function createAccount(User $user) : bool{
         $statement = $this->connection->getConnection()->prepare(
             "INSERT INTO users (`email`, `password`, `name`, `created_at`)
             VALUES(?, ?, ?, NOW())"
         );
-        return $statement->execute(([$email,$password,$name]));
+        return $statement->execute(([
+            $user->email,
+            $user->password,
+            $user->name,
+            ]));
     }
 }

@@ -32,7 +32,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
                 <a href="index.php?action=myProfil">my profil</a>
                 <a href="index.php?action=logout">Logout</a>
                 <?php }else{?>
-                    <a href="index.php?action=login">Login</a>
+                    <a href="index.php?action=login&tab=connexion">Login</a>
                 <?php } ?>
                 <button class="messages">Messages</button>
             </div>

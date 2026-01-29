@@ -8,6 +8,7 @@ require_once __DIR__ . '/../utils/database.php';
 require_once __DIR__ . '/../models/loginModel.php';
 
 use App\Model\LoginModel\LoginRepository;
+use App\model\LoginModel\User;
 use App\Utils\Database\DatabaseConnection;
 
 class Login {
@@ -41,8 +42,8 @@ class Login {
         header('Location: index.php');
     }
     // Créer un compte utilisateur
-    public function createAccount(string $email, string $password, string $name){
-        if(!isset($email, $password, $name)){
+    public function createAccount(string $email, string $password, string $password2, string $name){
+        if(!isset($email, $password, $password2, $name)){
             throw new \Exception("Informations manquantes");
         }
         // Validation + sanitize Email
@@ -51,6 +52,9 @@ class Login {
             throw new \Exception("Email invalide");
         }
         // Validation + hash Password
+        if($password !== $password2){
+            throw new \Exception('Les deux mot de passe saisie sont differents');
+        }
         if(strlen($password)<4){
             throw new \Exception('Mot de passe trop court');
         }
@@ -65,9 +69,14 @@ class Login {
             throw new \Exception("Email déja existant"); 
         }
         // Créer le compte
-        $loginRepository->createAccount($email,$passwordHashed,$name);
+        $user=new User;
+        $user->email=$email;
+        $user->password=$passwordHashed;
+        $user->name=$name;
+
+        $loginRepository->createAccount($user);
         $_SESSION['flash_succes']= "Le compte a été crée avec succès";
-        header('Location: index.php?action=login');
+        header('Location: index.php?action=login&tab=connexion');
     }
 
     public function displayLoginPage(){

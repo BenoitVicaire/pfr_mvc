@@ -1,0 +1,73 @@
+@use "../utils/variable";
+
+.loginContainer{
+    border: solid black 2px;
+    border-radius: 25px;
+    width: 350px;
+    margin: auto;
+    background-color: variable.$main_white;
+
+    h2{
+        text-align: center;
+    }
+}
+.tabs{
+    width: 80%;
+    margin: 40px auto;
+}
+
+.tabButtons{
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+    // border-bottom: solid black 2px;
+}
+
+.tabBtn{
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+}
+
+.tabBtn.active{
+    border-bottom: solid black 3px;
+    font-weight: bold;
+}
+.tabContent{
+    display: none;
+    padding: 20px 0;
+}
+
+.tabContent.active{
+    display: block;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.loginForm,input{
+    width: 100%;
+}
+.successMessage{
+    text-align: center;
+}
+.welcomeMessage{
+    // width: 350px;
+    height: 80px;
+    text-align: center;
+    gap: 5px;
+}
+#btnSubmitCreate{
+    font-family: variable.$font_title;
+    font-weight: bold;
+    font-size: large;
+    align-self: center;
+    padding: 3px;
+    border: solid grey 1px;
+    border-radius: 10px;
+
+}

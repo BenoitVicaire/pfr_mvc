@@ -5,6 +5,7 @@ use App\Utils\Database\DatabaseConnection;
 class Thread{
     public int $id;
     public string $title;
+    public string $description;
     public string $content;
     public string $created_at;
     public string $created_by;
@@ -31,6 +32,7 @@ class ForumRepository{
         "SELECT 
             t.id,
             t.title,
+            t.description,
             t.content,
             u.name,
             DATE_FORMAT(t.created_at,'%d/%m/%Y à %Hh%imin%ss') as created_at,
@@ -47,6 +49,7 @@ class ForumRepository{
             $thread = new Thread();
             $thread->id =(int) $row['id'];
             $thread->title = $row['title'];
+            $thread->description = $row['description'];
             $thread->content = $row['content'];
             $thread->created_by = $row['name'];
             $thread->created_at = $row['created_at'];
@@ -55,6 +58,17 @@ class ForumRepository{
             $threads[]= $thread;
         }
         return $threads;
+    }
+    public function createThread(Thread $thread): bool {
+        $statement=$this->connection->getConnection()->prepare(
+            "INSERT INTO threads(`title`, `description`, `content`, `created_at`, `created_by`, `last_update`)VALUES( ?, ?, ?, NOW(), ?, NOW())"
+        );
+    return $statement->execute([
+        $thread->title,
+        $thread->description,
+        $thread->content,
+        $thread->created_by,
+        ]);
     }
 
     public function getComments($thread_id):array{

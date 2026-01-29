@@ -14,8 +14,10 @@ try{
         'login' => fn() =>(new Login())->displayLoginPage(),
         'logout' => fn() =>(new Login())->logout(),
         'submitLogin' => fn() =>(new Login())->login($_POST['email'],$_POST['password']),
-        'submitCreateAccount' => fn() =>(new Login())->createAccount($_POST['email'],$_POST['password'],$_POST['name']),
+        'submitCreateAccount' => fn() =>(new Login())->createAccount($_POST['email'],$_POST['password'],$_POST['password2'],$_POST['name']),
         'forum' => fn() =>(new Forum())->displayForum(),
+        'createNewThread' => fn() =>(new Forum())->createNewThread(),
+        'submitCreateThread' => fn() =>(new Forum())->submitCreateThread($_POST['title'],$_POST['description'],$_POST['content']),
         'homepage' => fn() =>(new Homepage())->displayHomepage(),
         '' => fn() =>(new Homepage())->displayHomepage(),
     ];
@@ -28,33 +30,6 @@ try{
     $routes[$action]();
 
     
-    // $allowedAction= ['login', 'logout','submitLogin','submitCreateAccount','forum'];
-    // if(isset($_GET['action']) && in_array($_GET['action'], $allowedAction)){
-    //     switch($_GET['action']){
-    //         case 'login':
-    //             (new Login())->displayLoginPage();
-    //             break;
-    //         case 'logout':
-    //             (new Login())->logout();
-    //             break;
-    //         case 'submitLogin':
-    //             (new Login())->login($_POST['email'],$_POST['password']);
-    //             break;
-    //         case 'submitCreateAccount':
-    //             (new Login())->createAccount($_POST['email'],$_POST['password'],$_POST['name']);
-    //             break;
-    //         case 'forum' :
-    //             (new Forum())->displayForum();
-    //             break;
-    //         default:
-    //             throw new Exception("Error 404", 404);
-                
-    //             break;
-    //     }
-    // }else{
-    //     throw new \Exception("Error 404", 404);
-        
-    // }
 }catch(Exception $e){
     $errorMessage = $e->getMessage();
     require('../templates/errors.php');
