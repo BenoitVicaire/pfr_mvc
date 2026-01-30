@@ -49,6 +49,7 @@ class Forum{
         }
         $forumRepository = new ForumRepository(new DatabaseConnection());
         $thread = $forumRepository->getThreadById($thread_id);
+        $comments = $forumRepository->getCommentsByThreadId($thread_id);
         require __DIR__ . '/../../templates/forum/thread.php';
     }
 }

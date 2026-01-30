@@ -15,7 +15,7 @@ ob_start() ?>
 <section class="forumCore">
     <?php 
     foreach ($threads as $thread) {?>
-        <div class="thread">
+        <section class="thread">
             <div class="threadLeft">
                 <h3 class="threadLeftTop">
                     <a href="index.php?action=thread&thread_id=<?= $thread->id ?>"><?= htmlspecialchars(substr($thread->title,0,70)); ?></a>
@@ -39,7 +39,7 @@ ob_start() ?>
 
                 <span class="threadLastUpdate"><?= htmlspecialchars($thread->last_update); ?></span>
             </div>
-        </div>
+        </section>
     <?php    
     }?>
 </section>

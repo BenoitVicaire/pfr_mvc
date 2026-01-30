@@ -1,5 +1,11 @@
 @use "../utils/variable";
 
+.page-login {
+    main {
+        background-color: transparent;
+    }
+}
+
 .loginContainer{
     border: solid black 2px;
     border-radius: 25px;

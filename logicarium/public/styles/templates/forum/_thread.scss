@@ -1,1 +1,57 @@
 @use "../../utils/variable";
+
+.page-thread{
+    h1{
+        font-family: variable.$font_title;
+        color:variable.$main_white
+    }
+
+    .thread{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .threadHeader{
+        background-color: variable.$main_blue;
+        border-bottom:solid black 1px ;
+        height: 50px;
+    }
+
+    .threadTitle{
+        margin: 5px 0 0 20px;
+    }
+
+    .threadBody{
+        display: flex;
+        flex-direction: row;
+    }
+    .threadContent{
+        margin: 7px;
+        width: 100%;
+        
+    }
+
+    .userDetail{
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+        min-height: 200px;
+        border-left: solid black 2px;
+        text-align: center;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        padding-top: 5px;
+        gap :5px;
+
+        img{
+            // display: block;
+            width: calc(249px*0.6);
+            height:calc(197px*0.6);
+            padding: 0;
+            margin: 0;
+        }
+    }
+    
+}

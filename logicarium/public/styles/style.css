@@ -270,12 +270,12 @@ footer a:hover {
   gap: 0;
   padding: 0;
   border-bottom: solid black 1px;
-  margin-left: 5px;
+  padding-left: 5px;
 }
 .thread .threadLeft .threadDescription {
   flex: 1;
-  margin-left: 5px;
-  margin-top: 4px;
+  padding-left: 5px;
+  padding-top: 4px;
 }
 
 .threadLeft h3 a,
@@ -347,6 +347,51 @@ footer a:hover {
   grid-row: 3;
 }
 
+.page-thread h1 {
+  font-family: "Cinzel Decorative", serif;
+  color: #D9D9D9;
+}
+.page-thread .thread {
+  display: flex;
+  flex-direction: column;
+}
+.page-thread .threadHeader {
+  background-color: #25324B;
+  border-bottom: solid black 1px;
+  height: 50px;
+}
+.page-thread .threadTitle {
+  margin: 5px 0 0 20px;
+}
+.page-thread .threadBody {
+  display: flex;
+  flex-direction: row;
+}
+.page-thread .threadContent {
+  margin: 7px;
+  width: 100%;
+}
+.page-thread .userDetail {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  min-height: 200px;
+  border-left: solid black 2px;
+  text-align: center;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  padding-top: 5px;
+  gap: 5px;
+}
+.page-thread .userDetail img {
+  width: 149.4px;
+  height: 118.2px;
+  padding: 0;
+  margin: 0;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -371,6 +416,10 @@ main {
     margin: auto;
   }
 }
+.page-login main {
+  background-color: transparent;
+}
+
 .loginContainer {
   border: solid black 2px;
   border-radius: 25px;

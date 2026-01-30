@@ -19,13 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("flag_gb").addEventListener("click", () => setLanguage("gb"));
 
     initAvatar();
-    if(document.body.dataset.page === 'login'){
-        const mainStyle = document.querySelector('main');
-        if(mainStyle){
-            mainStyle.style.backgroundColor = 'transparent';
-        }
-       initLogin(); 
-       
+
+    if (document.body.dataset.page === 'login') {
+        document.body.classList.add('page-login');
+        initLogin();
+    }
+    if (document.body.dataset.page === 'thread') {
+        document.body.classList.add('page-thread');
     }
 });
 

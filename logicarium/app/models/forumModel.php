@@ -36,8 +36,8 @@ class ForumRepository{
             t.description,
             t.content,
             u.name,
-            DATE_FORMAT(t.created_at,'%d/%m/%Y à %Hh%imin%ss') as created_at,
-            DATE_FORMAT(t.last_update, '%d/%m/%Y à %Hh%imin%ss') as last_update
+            DATE_FORMAT(t.created_at,'%d/%m/%Y à %Hh%imin') as created_at,
+            DATE_FORMAT(t.last_update, '%d/%m/%Y à %Hh%imin') as last_update
         FROM threads t
         JOIN users u
             ON u.id = t.created_by
@@ -69,8 +69,8 @@ class ForumRepository{
                 t.description,
                 t.content,
                 u.name,
-                DATE_FORMAT(t.created_at,'%d/%m/%Y à %Hh%imin%ss') as created_at,
-                DATE_FORMAT(t.last_update, '%d/%m/%Y à %Hh%imin%ss') as last_update
+                DATE_FORMAT(t.created_at,'%d/%m/%Y à %Hh%imin') as created_at,
+                DATE_FORMAT(t.last_update, '%d/%m/%Y à %Hh%imin') as last_update
             FROM threads t
             JOIN users u
                 ON u.id = t.created_by
@@ -108,7 +108,7 @@ class ForumRepository{
 
                                     //Partie Comments
     // Prend un thread_id, return la liste des commentaires de ce thread
-    public function getComments($thread_id):array{
+    public function getCommentsByThreadId($thread_id):array{
         $statement= $this->connection->getConnection()->prepare(
             "SELECT
             c.id,
@@ -121,7 +121,7 @@ class ForumRepository{
             WHERE t.id= ?"
         );
 
-        $statement->execute(['t.id' => $thread_id]);
+        $statement->execute([$thread_id]);
         $comments=[];
         while(($row = $statement->fetch())){
             $comment = new Comment();
