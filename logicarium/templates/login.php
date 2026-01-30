@@ -7,11 +7,11 @@ ob_start(); ?>
     <?php if (!isset($_SESSION['logged'])) : ?>
         <div class="tabs">
             <div class="tabButtons">
-                <button class="tabBtn active" data-tab="connexion">S'inscrire</button>
-                <button class="tabBtn" data-tab="inscription">Se Connecter</button>
+                <button class="tabBtn active" data-tab="inscription">S'inscrire</button>
+                <button class="tabBtn" data-tab="connexion">Se Connecter</button>
             </div>
 
-            <div class="tabContent active" id="connexion">
+            <div class="tabContent active" id="inscription">
                 <h2>S'inscrire</h2>
 
                 <!-- Formulaire Creation de compte -->
@@ -32,7 +32,7 @@ ob_start(); ?>
             </form>
 
             </div>
-            <div class="tabContent" id="inscription">
+            <div class="tabContent" id="connexion">
                 <h2>Se Connecter</h2>
 
                 <form action="index.php?action=submitLogin" method="POST" class="loginForm">

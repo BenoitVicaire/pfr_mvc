@@ -9,6 +9,7 @@ class User{
     public string $password;
     public string $created_at;
     public string $email;
+    public int $avatar;
 }
 
 class LoginRepository{
@@ -26,6 +27,18 @@ class LoginRepository{
             LIMIT 1;"
         );
         $statement->execute(['email' => $email]);
+        $user = $statement->fetch(\PDO::FETCH_ASSOC);
+        return $user;
+    }
+
+    public function getUserById($id){
+        $statement = $this->connection->getConnection()->prepare(
+             "SELECT u.id, u.password, u.email, u.avatar
+            FROM users u
+            WHERE u.id = :id
+            LIMIT 1;"
+        );
+        $statement->execute(['id' => $id]);
         $user = $statement->fetch(\PDO::FETCH_ASSOC);
         return $user;
     }

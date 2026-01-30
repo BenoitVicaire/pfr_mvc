@@ -7,7 +7,9 @@ ob_start() ?>
         test/test/test
     </div>
     <div class="forumBoutonContainer">
+        <?php if(isset($_SESSION['logged']) && $_SESSION['logged']) :?>
         <a class="forumBouton" href="index.php?action=createNewThread">Nouveau fil</a>
+        <?php endif ?>
     </div>
 </section>
 <section class="forumCore">
@@ -16,7 +18,7 @@ ob_start() ?>
         <div class="thread">
             <div class="threadLeft">
                 <h3 class="threadLeftTop">
-                    <?= htmlspecialchars(substr($thread->title,0,70)); ?>
+                    <a href="index.php?action=thread&thread_id=<?= $thread->id ?>"><?= htmlspecialchars(substr($thread->title,0,70)); ?></a>
                 </h3>
                 <div class="threadDescription">
                     <?= htmlspecialchars(substr($thread->description,0,70)); ?>

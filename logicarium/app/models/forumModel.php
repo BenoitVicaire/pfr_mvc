@@ -26,7 +26,8 @@ class ForumRepository{
     public function __construct(DatabaseConnection $connection){
         $this->connection = $connection;
     }
-    
+                                    // Partie Thread
+    // Retourne la liste des thread
     public function getThreads():array{
         $sql=
         "SELECT 
@@ -59,6 +60,40 @@ class ForumRepository{
         }
         return $threads;
     }
+    // Prend un id, retourne le Thread correspondant
+    public function getThreadById($thread_id):Thread{
+        $statement = $this->connection->getConnection()->prepare(
+            "SELECT 
+                t.id,
+                t.title,
+                t.description,
+                t.content,
+                u.name,
+                DATE_FORMAT(t.created_at,'%d/%m/%Y à %Hh%imin%ss') as created_at,
+                DATE_FORMAT(t.last_update, '%d/%m/%Y à %Hh%imin%ss') as last_update
+            FROM threads t
+            JOIN users u
+                ON u.id = t.created_by
+            WHERE t.id = :thread_id ;"
+        );
+        $statement->execute(['thread_id'=>$thread_id]);
+        $data = $statement->fetch(\PDO::FETCH_ASSOC);
+        if(!$data){
+            throw new \Exception("Thread introuvable");
+        }
+
+        $thread = new Thread();
+        $thread->id =(int) $data['id'];
+        $thread->title = $data['title'];
+        $thread->description = $data['description'];
+        $thread->content = $data['content'];
+        $thread->created_by = $data['name'];
+        $thread->created_at = $data['created_at'];
+        $thread->last_update = $data['last_update'];
+            
+        return $thread;
+    }
+    // Creér le thread en BDD
     public function createThread(Thread $thread): bool {
         $statement=$this->connection->getConnection()->prepare(
             "INSERT INTO threads(`title`, `description`, `content`, `created_at`, `created_by`, `last_update`)VALUES( ?, ?, ?, NOW(), ?, NOW())"
@@ -71,6 +106,8 @@ class ForumRepository{
         ]);
     }
 
+                                    //Partie Comments
+    // Prend un thread_id, return la liste des commentaires de ce thread
     public function getComments($thread_id):array{
         $statement= $this->connection->getConnection()->prepare(
             "SELECT
@@ -97,4 +134,18 @@ class ForumRepository{
         }
         return $comments;
     }
+
+    // Créer un commentaire en bdd
+     public function createComment(Comment $comment): bool {
+        $statement=$this->connection->getConnection()->prepare(
+            "INSERT INTO comments( `content`, `created_at`, `created_by`, `thread_id`)VALUES( ?, NOW(), ?, ? )"
+        );
+    return $statement->execute([
+        $comment->content,
+        $comment->created_at,
+        $comment->created_by,
+        $comment->thread_id,
+        ]);
+    }
+
 }

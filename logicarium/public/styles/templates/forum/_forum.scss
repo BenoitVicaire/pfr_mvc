@@ -1,4 +1,4 @@
-@use "../utils/variable";
+@use "../../utils/variable";
 
 .heading{
     // background-color: aqua;
@@ -100,6 +100,15 @@
         }
     }
 }
+.threadLeft h3 a,
+.threadLeft h3 a:visited,
+.threadLeft h3 a:active {
+    color: variable.$main_white;
+    text-decoration: none;
+}
+.threadLeft h3 a:hover{
+    color: variable.$link_emphase;
+}
 .formCreateThread {
     align-items: start;
     padding-top: 10px;
@@ -115,10 +124,6 @@
     #formCreateThreadTitle{
         grid-column: 2;
         grid-row: 1;
-        // input{
-        //     width: 100%;            
-        //     box-sizing: border-box;
-        // }
     }
     #formCreateThreadDescription{
         grid-column: 2;

@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             mainStyle.style.backgroundColor = 'transparent';
         }
        initLogin(); 
+       
     }
 });
 

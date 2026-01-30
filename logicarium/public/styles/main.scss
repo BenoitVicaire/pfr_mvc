@@ -4,7 +4,8 @@
 @use "templates/footer";
 @use "templates/error";
 @use "templates/homepage";
-@use "templates/forum";
+@use "templates/forum/forum";
+@use "templates/forum/thread";
 @use "base/base";
 @use "templates/login";
 

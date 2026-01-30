@@ -19,6 +19,7 @@ try{
         'createNewThread' => fn() =>(new Forum())->createNewThread(),
         'submitCreateThread' => fn() =>(new Forum())->submitCreateThread($_POST['title'],$_POST['description'],$_POST['content']),
         'homepage' => fn() =>(new Homepage())->displayHomepage(),
+        'thread' => fn() =>(new Forum())->displayThread($_GET['thread_id']),
         '' => fn() =>(new Homepage())->displayHomepage(),
     ];
     
