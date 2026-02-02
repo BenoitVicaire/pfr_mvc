@@ -1,10 +1,11 @@
 @use "utils/variable";
 @use "components/buttons";
-@use "templates/header";
-@use "templates/footer";
-@use "templates/error";
+@use "templates/common/header";
+@use "templates/common/footer";
+@use "templates/common/error";
 @use "templates/homepage";
 @use "templates/forum/forum";
+@use "templates/forum/createThread";
 @use "templates/forum/thread";
 @use "base/base";
 @use "templates/login";

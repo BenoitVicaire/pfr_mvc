@@ -6,6 +6,7 @@ ob_start() ?>
         <!-- Titre du thread -->
     <header class="threadHeader">
         <h1 class="threadTitle"><?= $thread->title ?></h1>
+        <a href="index.php?acion=createComment&thread_id=<?= $thread->id ?>"></a>
     </header>
     
     <section class="threadBody">
@@ -27,21 +28,21 @@ ob_start() ?>
     <?php foreach($comments as $comment){ ?>
         <article class="comment">
             <section class="commentBody">
-        <!-- Contenu du commentaire -->
-        <div class="commentContent">
-            <p><?= $comment->content ?></p>
-        </div>
-        <!-- Detail du createur du thread -->
-        <div class="userDetail">
-            <img src="/pfr_new/logicarium/public/assets/images/avatar/Avatar_1.png" alt="avatar1">
-            <span class="threadAuthor">par <?= $comment->created_by ?></span>
+                <!-- Contenu du commentaire -->
+                <div class="commentContent">
+                    <p><?= $comment->content ?></p>
+                </div>
+                <!-- Detail du createur du thread -->
+                <div class="userDetail">
+                    <img src="/pfr_new/logicarium/public/assets/images/avatar/Avatar_1.png" alt="avatar1">
+                    <span class="threadAuthor">par <?= $comment->created_by ?></span>
 
-            <time datetime="2025-01-28">Le <?= $comment->created_at ?></time>
-        </div>
-    </section>
+                    <time datetime="2025-01-28">Le <?= $comment->created_at ?></time>
+                </div>
+            </section>
         </article>
     <?php } ?>
 </section>
 
 <?php $content = ob_get_clean(); ?>
-<?php require __DIR__ . '/../layout.php' ?>
+<?php require __DIR__ . '/../common/layout.php' ?>

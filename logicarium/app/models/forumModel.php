@@ -1,10 +1,16 @@
 <?php 
 namespace App\Model\ForumModel;
 use App\Utils\Database\DatabaseConnection;
+class Category{
+    public int $id;
+    public string $name;
+    public string $description;
+}
 
 class Thread{
     public int $id;
     public string $title;
+    public string $category_id;
     public string $description;
     public string $content;
     public string $created_at;
@@ -27,38 +33,79 @@ class ForumRepository{
         $this->connection = $connection;
     }
                                     // Partie Thread
-    // Retourne la liste des thread
-    public function getThreads():array{
+    // Retourne toutes les catégories
+    public function getCategorys(){
         $sql=
+        "SELECT
+            c.id,
+            c.name,
+            c.description
+        FROM category c";
+
+        $statement = $this->connection->getConnection()->query($sql);
+
+        $categorys=[];
+        while(($row = $statement->fetch())){
+            $category = new Category();
+            $category->id=(int) $row['id'];
+            $category->name=$row['name'];
+            $category->description=$row['description'];
+
+            $categorys[]=$category;
+        }
+        return $categorys;
+    }
+                                    // Partie Thread
+    // Retourne la liste des threads par categories
+    public function getThreadsByCategory():array{
+        $sql = 
         "SELECT 
-            t.id,
+            t.id AS thread_id,
             t.title,
-            t.description,
+            t.description AS thread_description,
             t.content,
+            t.category_id,
             u.name,
+            c.id AS category_id,
+            c.name AS category_name,
+            c.description AS category_description,
             DATE_FORMAT(t.created_at,'%d/%m/%Y à %Hh%imin') as created_at,
             DATE_FORMAT(t.last_update, '%d/%m/%Y à %Hh%imin') as last_update
         FROM threads t
         JOIN users u
             ON u.id = t.created_by
-        ORDER BY t.last_update DESC";
+        JOIN category c
+            ON c.id = t.category_id
+        
+        ORDER BY c.name, t.last_update DESC";
 
-        $statement = $this->connection->getConnection()->query($sql);
+        $statement= $this->connection->getConnection()->query($sql);
 
-        $threads=[];
+        $threadsByCategory=[];
         while (($row = $statement->fetch())){
             $thread = new Thread();
-            $thread->id =(int) $row['id'];
+            $thread->id =(int) $row['thread_id'];
             $thread->title = $row['title'];
-            $thread->description = $row['description'];
+            $thread->description = $row['thread_description'];
             $thread->content = $row['content'];
             $thread->created_by = $row['name'];
             $thread->created_at = $row['created_at'];
             $thread->last_update = $row['last_update'];
+
+            $categoryId = (int) $row['category_id'];
+
+            if (!isset($threadsByCategory[$categoryId])) {
+                $threadsByCategory[$categoryId] = [
+                    'id' => $categoryId,
+                    'name' => $row['category_name'],
+                    'description' => $row['category_description'],
+                    'threads' => []
+                ];
+            }
             
-            $threads[]= $thread;
+            $threadsByCategory[$row['category_id']]['threads'][]= $thread;
         }
-        return $threads;
+        return $threadsByCategory;
     }
     // Prend un id, retourne le Thread correspondant
     public function getThreadById($thread_id):Thread{
@@ -94,16 +141,18 @@ class ForumRepository{
         return $thread;
     }
     // Creér le thread en BDD
-    public function createThread(Thread $thread): bool {
+    public function createThread(Thread $thread): int {
         $statement=$this->connection->getConnection()->prepare(
-            "INSERT INTO threads(`title`, `description`, `content`, `created_at`, `created_by`, `last_update`)VALUES( ?, ?, ?, NOW(), ?, NOW())"
+            "INSERT INTO threads(`title`, `category_id`, `description`, `content`, `created_at`, `created_by`, `last_update`)VALUES( ?, ?, ?, ?, NOW(), ?, NOW())"
         );
-    return $statement->execute([
-        $thread->title,
-        $thread->description,
-        $thread->content,
-        $thread->created_by,
+        $statement->execute([
+            $thread->title,
+            $thread->category_id,
+            $thread->description,
+            $thread->content,
+            $thread->created_by,
         ]);
+        return (int) $this->connection->getConnection()->lastInsertId();
     }
 
                                     //Partie Comments
@@ -114,10 +163,12 @@ class ForumRepository{
             c.id,
             c.content,
             c.created_at,
-            c.created_by
+            u.name AS created_by
             FROM comments c
             JOIN threads t
                 ON c.thread_id = t.id
+            JOIN users u
+                ON c.created_by = u.id
             WHERE t.id= ?"
         );
 
@@ -147,5 +198,6 @@ class ForumRepository{
         $comment->thread_id,
         ]);
     }
+    
 
 }

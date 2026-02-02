@@ -1,14 +1,16 @@
 @use "../../utils/variable";
 
 .page-thread{
+        color:variable.$main_white;
+    // Thread
     h1{
         font-family: variable.$font_title;
-        color:variable.$main_white
     }
 
     .thread{
         display: flex;
         flex-direction: column;
+        border-bottom: solid black 3px;
     }
 
     .threadHeader{
@@ -21,11 +23,11 @@
         margin: 5px 0 0 20px;
     }
 
-    .threadBody{
+    .threadBody, .commentBody{
         display: flex;
         flex-direction: row;
     }
-    .threadContent{
+    .threadContent, .commentContent{
         margin: 7px;
         width: 100%;
         
@@ -46,12 +48,14 @@
         gap :5px;
 
         img{
-            // display: block;
             width: calc(249px*0.6);
             height:calc(197px*0.6);
             padding: 0;
             margin: 0;
         }
     }
-    
+    // Comments
+    .comment{
+        border-bottom:solid black 2px;
+    }
 }

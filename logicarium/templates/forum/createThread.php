@@ -2,6 +2,14 @@
 ob_start() ?>
 
 <form action="index.php?action=submitCreateThread" method="post" class="formCreateThread" >
+    <div id="formCreateThreadCategory" class="formInputArea">
+        <select name="category_id" id="categorieSelect" required>
+                <option value="">--Veuillez choisir une catégorie</option>
+            <?php foreach ($categorys as $category){ ?>
+                <option value=<?= $category->id ?>><?= $category->name ?></option>
+            <?php } ?> 
+        </select>
+    </div>
 
     <div class="labelCell" id="formCreateThreadTitleLabel">
         <h6>Title</h6>
@@ -33,4 +41,4 @@ ob_start() ?>
 
 
 <?php $content = ob_get_clean(); ?>
-<?php require __DIR__ . '/../layout.php' ?>
+<?php require __DIR__ . '/../common/layout.php' ?>

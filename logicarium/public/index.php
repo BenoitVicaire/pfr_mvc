@@ -4,10 +4,14 @@ session_start();
 require_once __DIR__ . '/../app/controllers/loginController.php';
 require_once __DIR__ . '/../app/controllers/forumController.php';
 require_once __DIR__ . '/../app/controllers/homepageController.php';
+require_once __DIR__ . '/../app/controllers/contactController.php';
+require_once __DIR__ . '/../app/controllers/messagesController.php';
 
+use App\Controllers\ContactController\Contact;
 use App\Controllers\LoginController\Login;
 use App\Controllers\ForumController\Forum;
 use App\Controllers\HomepageController\Homepage;
+use App\Controllers\MessagesController\Messages;
 
 try{
     $routes =[
@@ -17,9 +21,12 @@ try{
         'submitCreateAccount' => fn() =>(new Login())->createAccount($_POST['email'],$_POST['password'],$_POST['password2'],$_POST['name']),
         'forum' => fn() =>(new Forum())->displayForum(),
         'createNewThread' => fn() =>(new Forum())->createNewThread(),
-        'submitCreateThread' => fn() =>(new Forum())->submitCreateThread($_POST['title'],$_POST['description'],$_POST['content']),
+        'submitCreateThread' => fn() =>(new Forum())->submitCreateThread($_POST['title'],$_POST['category_id'],$_POST['description'],$_POST['content']),
         'homepage' => fn() =>(new Homepage())->displayHomepage(),
         'thread' => fn() =>(new Forum())->displayThread($_GET['thread_id']),
+        'contact' => fn() =>(new Contact())->displayContact(),
+        'messages' => fn() =>(new Messages())->displayMessages(),
+        'createComment' => fn() =>(new Forum())->createComment($_GET['thread_id']),
         '' => fn() =>(new Homepage())->displayHomepage(),
     ];
     
@@ -33,5 +40,5 @@ try{
     
 }catch(Exception $e){
     $errorMessage = $e->getMessage();
-    require('../templates/errors.php');
+    require('../templates/common/errors.php');
 }

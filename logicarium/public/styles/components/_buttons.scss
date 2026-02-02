@@ -5,7 +5,7 @@
     font-size: large;
 
     &:hover{
-        color: blue;
+        color: variable.$main_text;
         font-size: larger;
     }
 }

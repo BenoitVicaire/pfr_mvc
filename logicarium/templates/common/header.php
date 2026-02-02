@@ -8,7 +8,7 @@ $loggedState=false;
 if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
 
 <link rel="stylesheet" href="../public/assets/icons/flag-icons.css">
-<header>
+<header class="commonHeader">
     <div class="header_top">
         <div class="header_top_left">
             <div class="header_top_left_left">
@@ -29,12 +29,12 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
             </div>
             <div class="header_top_left_right">
                 <?php if(isset($_SESSION['logged'])){?>                   
-                <a href="index.php?action=myProfil">my profil</a>
-                <a href="index.php?action=logout">Logout</a>
+                    <a href="index.php?action=myProfil" data-i18n="profil"></a>
+                    <a href="index.php?action=logout"data-i18n="logout"></a>
                 <?php }else{?>
-                    <a href="index.php?action=login&tab=connexion">Login</a>
+                    <a id="loginLink" href="index.php?action=login&tab=connexion"data-i18n="login"></a>
                 <?php } ?>
-                <button class="messages">Messages</button>
+                <a href="index.php?action=messages"data-i18n="messages"></a>
             </div>
         </div>
         <div class="header_middle_logo">
@@ -42,7 +42,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
         </div>
         <div class="header_top_right">
             <div class="langue">
-                <span id="language">Langue</span>
+                <span id="language" data-i18n="language"></span>
                 <div class="flags">
                     <button class="fi fi-gb active" id="flag_gb" aria-label="English"></button>
                     <button class="fi fi-fr" id="flag_fr"aria-label="French"></button>
@@ -53,7 +53,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
     <nav>
         <a href="index.php?action=forum" id="forum">Forum</a>
         <a href="index.php" id="ptd">Accueil</a>
-        <a href="pages/contact.html" id="contact">Contact</a>
+        <a href="index.php?action=contact" id="contact">Contact</a>
     </nav>
 </header>
 

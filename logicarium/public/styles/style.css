@@ -4,19 +4,20 @@
     box-shadow: 2px 2px #D9D9D9;
   }
 }
-header {
+.commonHeader {
   background-color: #D9D9D9;
   margin: auto;
   font-family: "MedievalSharp", cursive;
+  color: #101010;
 }
-header button {
+.commonHeader button {
   font-family: "MedievalSharp", cursive;
   border: none;
   background-color: #D9D9D9;
   font-size: large;
 }
-header button:hover {
-  color: blue;
+.commonHeader button:hover {
+  color: #101010;
   font-size: larger;
 }
 
@@ -87,8 +88,13 @@ header button:hover {
   flex-direction: column;
   gap: 5px;
 }
-.header_top_left .header_top_left_right button, .header_top_right .header_top_left_right button {
-  text-align: start;
+.header_top_left .header_top_left_right a, .header_top_right .header_top_left_right a {
+  text-decoration: none;
+  color: #101010;
+  transition: transform 0.2s;
+}
+.header_top_left .header_top_left_right a:hover, .header_top_right .header_top_left_right a:hover {
+  transform: scale(1.1);
 }
 
 .header_top_left {
@@ -186,7 +192,7 @@ footer a:hover {
   color: #D9D9D9;
 }
 
-.heading {
+.forum .heading {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -195,97 +201,126 @@ footer a:hover {
   border-bottom: solid black 2px;
   color: #D9D9D9;
 }
-.heading h2 {
+.forum .heading h2 {
   width: 120px;
   margin-left: 5px;
 }
-.heading .breadCrumb {
+.forum .heading .breadCrumb {
   font-family: "Roboto", sans-serif;
 }
-.heading .forumBoutonContainer {
+.forum .heading .forumBoutonContainer {
   align-self: center;
   margin-left: auto;
   margin-right: 5px;
 }
-.heading .forumBoutonContainer a {
+.forum .heading .forumBoutonContainer a {
   color: #D9D9D9;
   font-family: "MedievalSharp", cursive;
 }
-.heading .forumBoutonContainer a:link {
+.forum .heading .forumBoutonContainer a:link {
   text-decoration: none;
 }
-.heading .forumBoutonContainer a:hover {
+.forum .heading .forumBoutonContainer a:hover {
   color: #3F88C5;
   text-decoration: underline;
 }
-
-.thread {
+.forum .category {
+  display: flex;
+  flex-direction: column;
+  height: 60px;
+  color: #101010;
+  background-color: #D9D9D9;
+  gap: 5px;
+}
+.forum .category h2 {
+  margin: 0;
+  padding: 0;
+}
+.forum .category p {
+  margin: 0;
+  padding: 0;
+}
+.forum .collapsible .thread {
+  display: none;
+}
+.forum .collapsible.open .thread {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.forum .arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.forum .collapsible.open .arrow {
+  transform: rotate(180deg);
+}
+.forum .thread {
   border-bottom: solid black 2px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   color: #D9D9D9;
+  display: none;
 }
-.thread .threadDetail {
+.forum .thread .threadDetail {
   width: 400px;
   border-left: solid black 2px;
   display: grid;
   grid-template-columns: auto auto auto;
   grid-template-rows: auto auto;
 }
-.thread .threadDetail .threadLabelCreatedBy {
+.forum .thread .threadDetail .threadLabelCreatedBy {
   margin-left: 5px;
   grid-column: 1;
   grid-row: 1;
 }
-.thread .threadDetail .threadCreatedBy {
+.forum .thread .threadDetail .threadCreatedBy {
   grid-column: 2;
   grid-row: 1;
 }
-.thread .threadDetail .threadCreatedAt {
+.forum .thread .threadDetail .threadCreatedAt {
   grid-column: 3;
   grid-row: 1;
 }
-.thread .threadDetail .threadLabelLastAnswer {
+.forum .thread .threadDetail .threadLabelLastAnswer {
   grid-column: 1;
   grid-row: 2;
 }
-.thread .threadDetail .threadLastAnswer {
+.forum .thread .threadDetail .threadLastAnswer {
   grid-column: 2;
   grid-row: 2;
 }
-.thread .threadDetail .threadLastUpdate {
+.forum .thread .threadDetail .threadLastUpdate {
   grid-column: 3;
   grid-row: 2;
 }
-.thread .threadLeft {
+.forum .thread .threadLeft {
   display: flex;
   flex-direction: column;
   width: 60%;
   height: 50px;
   justify-content: flex-start;
 }
-.thread .threadLeft .threadLeftTop {
+.forum .thread .threadLeft .threadLeftTop {
   margin: 0;
   gap: 0;
   padding: 0;
   border-bottom: solid black 1px;
   padding-left: 5px;
 }
-.thread .threadLeft .threadDescription {
+.forum .thread .threadLeft .threadDescription {
   flex: 1;
   padding-left: 5px;
   padding-top: 4px;
 }
-
-.threadLeft h3 a,
-.threadLeft h3 a:visited,
-.threadLeft h3 a:active {
+.forum .threadLeft h3 a,
+.forum .threadLeft h3 a:visited,
+.forum .threadLeft h3 a:active {
   color: #D9D9D9;
   text-decoration: none;
 }
-
-.threadLeft h3 a:hover {
+.forum .threadLeft h3 a:hover {
   color: #3F88C5;
 }
 
@@ -297,26 +332,30 @@ footer a:hover {
   gap: 5px;
   display: grid;
   grid-template-columns: 1fr 500px 1fr;
-  grid-template-rows: 20px 38px 300px auto;
+  grid-template-rows: 20px 20px 38px 300px auto;
 }
 .formCreateThread #formCreateThreadTitle {
   grid-column: 2;
   grid-row: 1;
 }
-.formCreateThread #formCreateThreadDescription {
+.formCreateThread #formCreateThreadCategory {
   grid-column: 2;
   grid-row: 2;
 }
-.formCreateThread #formCreateThreadContent {
+.formCreateThread #formCreateThreadDescription {
   grid-column: 2;
   grid-row: 3;
+}
+.formCreateThread #formCreateThreadContent {
+  grid-column: 2;
+  grid-row: 4;
 }
 .formCreateThread #formCreateThreadContent, .formCreateThread textarea {
   height: 100%;
 }
 .formCreateThread button {
   grid-column: 2;
-  grid-row: 4;
+  grid-row: 5;
 }
 .formCreateThread .formInputArea, .formCreateThread textarea, .formCreateThread input {
   width: 100%;
@@ -340,20 +379,23 @@ footer a:hover {
 }
 .formCreateThread #formCreateThreadDescriptionLabel {
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 3;
 }
 .formCreateThread #formCreateThreadContentLabel {
   grid-column: 1;
-  grid-row: 3;
+  grid-row: 4;
 }
 
+.page-thread {
+  color: #D9D9D9;
+}
 .page-thread h1 {
   font-family: "Cinzel Decorative", serif;
-  color: #D9D9D9;
 }
 .page-thread .thread {
   display: flex;
   flex-direction: column;
+  border-bottom: solid black 3px;
 }
 .page-thread .threadHeader {
   background-color: #25324B;
@@ -363,11 +405,11 @@ footer a:hover {
 .page-thread .threadTitle {
   margin: 5px 0 0 20px;
 }
-.page-thread .threadBody {
+.page-thread .threadBody, .page-thread .commentBody {
   display: flex;
   flex-direction: row;
 }
-.page-thread .threadContent {
+.page-thread .threadContent, .page-thread .commentContent {
   margin: 7px;
   width: 100%;
 }
@@ -390,6 +432,9 @@ footer a:hover {
   height: 118.2px;
   padding: 0;
   margin: 0;
+}
+.page-thread .comment {
+  border-bottom: solid black 2px;
 }
 
 html, body {

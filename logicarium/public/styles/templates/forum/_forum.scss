@@ -1,173 +1,151 @@
 @use "../../utils/variable";
 
-.heading{
-    // background-color: aqua;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    height: 30px;
-    border-bottom: solid black 2px;
+.forum{
+    .heading{
+        // background-color: aqua;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: start;
+        height: 30px;
+        border-bottom: solid black 2px;
 
-    color: variable.$main_white;
+        color: variable.$main_white;
 
-    h2{
-        width: 120px;
-        margin-left: 5px;
-        
-    }
-    .breadCrumb{
-        font-family: variable.$font_main;
-    }
-    .forumBoutonContainer{
-        align-self: center;
-        margin-left: auto;
-        margin-right: 5px;
-
-        a{
-            color:variable.$main_white;
-            font-family: variable.$font_subtitle;
-
-        }
-        a:link{
-            text-decoration: none;
-        }
-        a:hover{
-            color: variable.$link_emphase;
-            text-decoration: underline;
-        }
-    }
-}
-.thread{
-    border-bottom: solid black 2px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    color:variable.$main_white;
-
-    .threadDetail{
-        width: 400px;
-        border-left: solid black 2px;
-        display: grid;
-        grid-template-columns: auto auto auto;
-        grid-template-rows:auto auto ;
-
-        .threadLabelCreatedBy{
+        h2{
+            width: 120px;
             margin-left: 5px;
-            grid-column: 1;
-            grid-row: 1;
+            
         }
-        .threadCreatedBy{
-            grid-column: 2;
-            grid-row: 1;
+        .breadCrumb{
+            font-family: variable.$font_main;
         }
-        .threadCreatedAt{
-            grid-column: 3;
-            grid-row: 1;
-        }
-        .threadLabelLastAnswer{
-            grid-column: 1;
-            grid-row: 2;
-        }
-        .threadLastAnswer{
-            grid-column: 2;
-            grid-row: 2;
-        }
-        .threadLastUpdate{
-            grid-column: 3;
-            grid-row: 2;
+        .forumBoutonContainer{
+            align-self: center;
+            margin-left: auto;
+            margin-right: 5px;
+
+            a{
+                color:variable.$main_white;
+                font-family: variable.$font_subtitle;
+
+            }
+            a:link{
+                text-decoration: none;
+            }
+            a:hover{
+                color: variable.$link_emphase;
+                text-decoration: underline;
+            }
         }
     }
-    .threadLeft{
+    .category{
         display: flex;
         flex-direction: column;
-        width: 60%;
-        height: 50px;
-        justify-content: flex-start;
-        
-
-        .threadLeftTop{
+        height: 60px;
+        color: variable.$main_text;
+        background-color: variable.$background_secondary;
+        gap:5px;
+        h2{
             margin: 0;
-            gap: 0;
             padding: 0;
-            border-bottom: solid black 1px;
-            padding-left: 5px;
         }
-        .threadDescription{
-            flex:1;
-            padding-left: 5px;
-            padding-top: 4px;
+        p{
+            margin: 0;
+            padding: 0;
         }
     }
-}
-.threadLeft h3 a,
-.threadLeft h3 a:visited,
-.threadLeft h3 a:active {
-    color: variable.$main_white;
-    text-decoration: none;
-}
-.threadLeft h3 a:hover{
-    color: variable.$link_emphase;
-}
-.formCreateThread {
-    align-items: start;
-    padding-top: 10px;
-    margin: auto;
-    width: 100%;
-    gap:5px;
+    // collapsable menu
+    .collapsible .thread{
+        display: none;
+    }
 
-    display: grid;
-    grid-template-columns: 1fr 500px 1fr;
-    grid-template-rows: 20px 38px 300px auto;
-
-
-    #formCreateThreadTitle{
-        grid-column: 2;
-        grid-row: 1;
-    }
-    #formCreateThreadDescription{
-        grid-column: 2;
-        grid-row: 2;
-    }
-    #formCreateThreadContent{
-        grid-column: 2;
-        grid-row: 3;
-    }
-    #formCreateThreadContent,textarea{
-        height: 100%;
-    }
-    button{
-        grid-column: 2;
-        grid-row: 4;
-    }
-    .formInputArea,textarea,input{
-        width: 100%;            
-        box-sizing: border-box;
-    }
-    .labelCell{
+    .collapsible.open .thread{
         display: flex;
-        justify-content: flex-end;
-        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
     }
-    h6{
-        margin: 0;
-        margin-right: 5px;
-        margin-top: 7px;
+
+    .arrow{
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+    .collapsible.open .arrow{
+        transform: rotate(180deg);
+    }
+    // 
+    .thread{
+        border-bottom: solid black 2px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        color:variable.$main_white;
+
+        display: none;
+
+        .threadDetail{
+            width: 400px;
+            border-left: solid black 2px;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-template-rows:auto auto ;
+
+            .threadLabelCreatedBy{
+                margin-left: 5px;
+                grid-column: 1;
+                grid-row: 1;
+            }
+            .threadCreatedBy{
+                grid-column: 2;
+                grid-row: 1;
+            }
+            .threadCreatedAt{
+                grid-column: 3;
+                grid-row: 1;
+            }
+            .threadLabelLastAnswer{
+                grid-column: 1;
+                grid-row: 2;
+            }
+            .threadLastAnswer{
+                grid-column: 2;
+                grid-row: 2;
+            }
+            .threadLastUpdate{
+                grid-column: 3;
+                grid-row: 2;
+            }
+        }
+        .threadLeft{
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            height: 50px;
+            justify-content: flex-start;
+            
+
+            .threadLeftTop{
+                margin: 0;
+                gap: 0;
+                padding: 0;
+                border-bottom: solid black 1px;
+                padding-left: 5px;
+            }
+            .threadDescription{
+                flex:1;
+                padding-left: 5px;
+                padding-top: 4px;
+            }
+        }
+    }
+    .threadLeft h3 a,
+    .threadLeft h3 a:visited,
+    .threadLeft h3 a:active {
         color: variable.$main_white;
-        font-family: variable.$font_subtitle;
+        text-decoration: none;
     }
-    #formCreateThreadTitleLabel{
-        grid-column: 1;
-        grid-row: 1;
-    }
-    #formCreateThreadDescriptionLabel{
-        grid-column: 1;
-        grid-row: 2;
-    }
-    #formCreateThreadContentLabel{
-        grid-column: 1;
-        grid-row: 3;
+    .threadLeft h3 a:hover{
+        color: variable.$link_emphase;
     }
     
-
 }

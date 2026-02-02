@@ -1,12 +1,12 @@
-@use "../utils/variable";
-@use "../components/buttons";
+@use "../../utils/variable";
+@use "../../components/buttons";
 
-header {
+.commonHeader{
     background-color: variable.$background_secondary;
     // width: 978px;
     margin: auto;
     font-family:variable.$font_subtitle ;
-    
+    color:variable.$main_text;
     button{
         font-family: variable.$font_subtitle;
         @include buttons.btn();
@@ -90,45 +90,52 @@ header {
         display: flex;
         flex-direction: column;
         gap: 5px;
-        button{
-            text-align: start;
+        a{
+            text-decoration: none;
+            color: variable.$main_text;
+            transition: transform 0.2s; 
+
+            
         }
+        a:hover {
+                transform: scale(1.1);
+            }
     }
 }
 .header_top_left{
-        border-right: 1px solid black;
-    }
+    border-right: 1px solid black;
+}
 .header_top_right{
-        border-left: 1px solid black;
+    border-left: 1px solid black;
+    display: flex;
+    padding: 5px;
+
+    .langue{
         display: flex;
-        padding: 5px;
+        flex-direction: row;
+        height: fit-content;
+        gap: 5px;
+        
 
-        .langue{
-            display: flex;
-            flex-direction: row;
-            height: fit-content;
-            gap: 5px;
-            
-
-            .flags{
-                margin-left: 5px;
-            }
-            #language{
-                
-                width: 80px;
-            }
-            button{
-                opacity: 0.5;
-                transition: opacity 0.3s;
-                cursor: pointer;
-
-                &.active{
-                    opacity: 1;
-                }
-            }
-
+        .flags{
+            margin-left: 5px;
         }
+        #language{
+            
+            width: 80px;
+        }
+        button{
+            opacity: 0.5;
+            transition: opacity 0.3s;
+            cursor: pointer;
+
+            &.active{
+                opacity: 1;
+            }
+        }
+
     }
+}
 nav{
     display: flex;
     flex-direction: row;
