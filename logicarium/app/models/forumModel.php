@@ -193,7 +193,6 @@ class ForumRepository{
         );
     return $statement->execute([
         $comment->content,
-        $comment->created_at,
         $comment->created_by,
         $comment->thread_id,
         ]);

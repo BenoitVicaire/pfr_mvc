@@ -100,7 +100,7 @@ export function setLanguage(lang) {
 	// document.querySelector("#contact_support").textContent = texts[lang].contact_support;
 }
 
-export function initLangue() {
-    setLanguage("fr");
-}
+// export function initLangue() {
+//     setLanguage("fr");
+// }
 

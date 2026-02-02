@@ -6,6 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . '/../models/forumModel.php';
 
 use App\Model\ForumModel\Category;
+use App\Model\ForumModel\Comment;
 use App\Model\ForumModel\ForumRepository;
 use App\Model\ForumModel\Thread;
 use App\Utils\Database\DatabaseConnection;
@@ -58,6 +59,37 @@ class Forum{
         $thread = $forumRepository->getThreadById($thread_id);
         $comments = $forumRepository->getCommentsByThreadId($thread_id);
         require __DIR__ . '/../../templates/forum/thread.php';
+    }
+
+    public function createComment($thread_id){
+         if(!isset($_GET['thread_id']) || $_GET['thread_id']<1){
+            throw new \Exception("Le thread n'existe pas");
+        }
+        $thread_id=$_GET['thread_id'];
+        $forumRepository = new ForumRepository(new DatabaseConnection());
+        require __DIR__ . '/../../templates/forum/createComment.php';
+    }
+
+    public function submitCreateComment($thread_id){
+        if(!isset($_SESSION['user']['id'])){
+            throw new \Exception("Vous devez être connecté pour effectué cette action");
+        }
+        $postData=$_POST;
+
+        if(!isset($postData['content'])){
+            throw new \Exception("Formulaire de création de Thread Incorrect");
+        }
+        $content=htmlentities(strip_tags($postData['content']), ENT_QUOTES, 'UTF-8');
+        
+        $comment =new Comment;
+        $comment->content=$content;
+        $comment->created_by=$_SESSION['user']['id'];
+        $comment->thread_id=$thread_id;
+
+
+        $forumRepository = new ForumRepository(new DatabaseConnection());
+        $forumRepository->createComment($comment);
+        header('Location: index.php?action=thread&thread_id=' . $thread_id);
     }
 }
 

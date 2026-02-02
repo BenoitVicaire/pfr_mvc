@@ -6,7 +6,7 @@ ob_start() ?>
         <!-- Titre du thread -->
     <header class="threadHeader">
         <h1 class="threadTitle"><?= $thread->title ?></h1>
-        <a href="index.php?acion=createComment&thread_id=<?= $thread->id ?>"></a>
+        <a href="index.php?action=createComment&thread_id=<?= $thread->id ?>">Commenter</a>
     </header>
     
     <section class="threadBody">

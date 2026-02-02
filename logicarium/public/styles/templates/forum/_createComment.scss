@@ -1,0 +1,41 @@
+@use "../../utils/variable";
+
+.formCreateComment{
+    align-items: start;
+    padding-top: 10px;
+    margin: auto;
+    width: 100%;
+    gap:5px;
+
+    display: grid;
+    grid-template-columns: 1fr 500px 1fr;
+    grid-template-rows:  300px auto;
+
+    .formInputArea,textarea,input{
+        width: 100%;
+        height: 100%;            
+        box-sizing: border-box;
+    }
+    .labelCell{
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+
+    #formCreateCommentContentLabel{
+    grid-column: 1;
+    grid-row: 1;
+    }
+
+    #formCreateThreadContent{
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    button{
+        grid-column: 2;
+        grid-row: 2;
+    }
+}
+
+

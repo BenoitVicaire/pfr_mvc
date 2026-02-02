@@ -14,9 +14,23 @@
     }
 
     .threadHeader{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         background-color: variable.$main_blue;
         border-bottom:solid black 1px ;
         height: 50px;
+
+        a{
+            margin: auto 10px auto ;
+            color:variable.$main_white;
+            text-decoration: none;
+            &:hover{
+                color: variable.$link_emphase;
+                text-decoration: underline;
+            }
+        }
+        
     }
 
     .threadTitle{

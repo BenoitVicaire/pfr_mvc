@@ -1,13 +1,17 @@
 // import { setLanguage } from './langue.js'
 import { initAvatar } from "./avatar.js";
 import { category } from "./forum.js";
-import { initLangue, setLanguage } from "./langue.js";
+import { setLanguage } from "./langue.js";
 import { initLogin } from "./login.js";
 
 
 document.addEventListener("DOMContentLoaded", () => {
 // Langue active : 
-    initLangue();
+    const storedLang = localStorage.getItem("lang");
+    if (storedLang) {
+        setLanguage(storedLang);
+    }
+    
     const flags = document.querySelectorAll(".flags button");
 
     flags.forEach(btn => {
