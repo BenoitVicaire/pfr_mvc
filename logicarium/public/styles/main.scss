@@ -3,6 +3,7 @@
 @use "templates/common/header";
 @use "templates/common/footer";
 @use "templates/common/error";
+@use "templates/common/breadCrumb";
 @use "templates/homepage";
 @use "templates/forum/forum";
 @use "templates/forum/createThread";

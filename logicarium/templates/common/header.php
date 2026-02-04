@@ -1,9 +1,10 @@
 <?php
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 ob_start(); 
-
+require('breadCrumb.php');
 $loggedState=false;
 if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
 
@@ -50,11 +51,14 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
             </div>
         </div>
     </div>
-    <nav>
+    <nav class="mainNav">
         <a href="index.php?action=forum" id="forum">Forum</a>
         <a href="index.php" id="ptd">Accueil</a>
         <a href="index.php?action=contact" id="contact">Contact</a>
     </nav>
+    <?php if(isset($breadcrumb) && $breadcrumb===true) : ?>
+         <?= $breadCrumbDisplay ?>
+    <?php endif ?>
 </header>
 
 <?php $header = ob_get_clean(); ?>

@@ -22,9 +22,7 @@ export function initAvatar() {
     // changer d'avatar
     avatarOptions.forEach(avatar => {
         avatar.addEventListener("click", () => {
-            console.log("on click",profilePic);
             if (profilePic) {         // <- vérification
-                console.log("arewein?")
                 profilePic.src = avatar.src;
                 modal.style.display = "none"; // fermer la modale
             }

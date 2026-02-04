@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @keyframes hoverbouton {
   100% {
     translate: -2px -2px;
@@ -127,14 +128,14 @@
   opacity: 1;
 }
 
-nav {
+.mainNav {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   background-color: #141414;
   height: 40px;
 }
-nav a {
+.mainNav a {
   color: #D9D9D9;
   text-decoration: none;
   padding: 10px;
@@ -145,7 +146,7 @@ nav a {
   align-items: center;
   margin: 5px;
 }
-nav a:hover {
+.mainNav a:hover {
   animation-name: hoverbouton;
   animation-duration: 0.2s;
   animation-fill-mode: forwards;
@@ -177,6 +178,36 @@ footer a:hover {
   margin: auto;
 }
 
+.breadcrumb {
+  font-family: "Roboto", sans-serif;
+  padding: 0 0.5rem;
+  background-color: #25324B;
+  width: auto;
+  border-bottom: solid black 1px;
+  padding: 2px;
+  color: #D9D9D9;
+}
+.breadcrumb a {
+  color: #D9D9D9;
+  text-decoration: none;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: end;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  display: inline-block;
+  margin: 0 0.25rem;
+  content: "→";
+  color: #D9D9D9;
+}
+
 .article {
   display: flex;
   flex-direction: column;
@@ -204,9 +235,6 @@ footer a:hover {
 .forum .heading h2 {
   width: 120px;
   margin-left: 5px;
-}
-.forum .heading .breadCrumb {
-  font-family: "Roboto", sans-serif;
 }
 .forum .heading .forumBoutonContainer {
   align-self: center;

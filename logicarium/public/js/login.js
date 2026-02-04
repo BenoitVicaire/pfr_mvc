@@ -15,7 +15,6 @@ export function initLogin(){
 
     const urlParams = new URLSearchParams(window.location.search);
     const tabFromUrl = urlParams.get('tab');
-    console.log("buttons : ", buttons);
     if(tabFromUrl){
         buttons.forEach(btn=>btn.classList.remove('active'));
         contents.forEach(content=>content.classList.remove('active'));

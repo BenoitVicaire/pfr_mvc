@@ -1,16 +1,15 @@
 <?php $title="Forum";
 $page = 'forum';
+$breadcrumb=true;
 ob_start() ?>
 <div class="forum">
     <section class="heading">
         <h2>Forum</h2>
-        <div class="breadCrumb">
-            test/test/test
-        </div>
+        
         <div class="forumBoutonContainer">
             <?php if(isset($_SESSION['logged']) && $_SESSION['logged']) :?>
                 <a class="forumBouton" href="index.php?action=createNewThread">Nouveau fil</a>
-            <?php else : echo "Connectez vous pour poster un thread"  ?>
+            <?php else : ?> <a href="index.php?action=login">Connectez vous pour poster un thread</a>
             <?php endif ?>
         </div>
     </section>

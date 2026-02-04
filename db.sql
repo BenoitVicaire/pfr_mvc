@@ -41,6 +41,31 @@ INSERT INTO `avatar` VALUES (0,'/pfr_new/logicarium/public/assets/images/avatar/
 UNLOCK TABLES;
 
 --
+-- Table structure for table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Annonce','Les annonces importantes'),(2,'Feedback','Les retours utilisateurs');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `comments`
 --
 
@@ -58,7 +83,7 @@ CREATE TABLE `comments` (
   KEY `comments_ibfk_2` (`thread_id`),
   CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`thread_id`) REFERENCES `threads` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +92,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (0,'Il est super top ce thread, trop bien de ouf','2026-01-27 13:03:03',1,1),(1,'Bouhhh trop naze','2026-01-27 13:03:03',2,1);
+INSERT INTO `comments` VALUES (0,'Il est super top ce thread, trop bien de ouf','2026-01-27 13:03:03',1,1),(1,'Bouhhh trop naze','2026-01-27 13:03:03',2,1),(2,'zugzug','2026-02-02 16:27:44',9,4);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,10 +111,13 @@ CREATE TABLE `threads` (
   `created_by` int(11) NOT NULL,
   `last_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `description` text NOT NULL,
+  `category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `created_by` (`created_by`),
+  KEY `fk_threads_category` (`category_id`),
+  CONSTRAINT `fk_threads_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE,
   CONSTRAINT `threads_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +126,7 @@ CREATE TABLE `threads` (
 
 LOCK TABLES `threads` WRITE;
 /*!40000 ALTER TABLE `threads` DISABLE KEYS */;
-INSERT INTO `threads` VALUES (1,'Test','\nWhat is Lorem Ipsum?\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n','2026-01-27 13:03:03',1,'2026-01-30 16:05:07','une belle description plus ou moins longue'),(2,'Test2','Lorem Ipsum','2026-01-28 13:03:03',2,'2026-01-30 16:05:07','une belle description plus ou moins longue'),(3,'qsssssssssssssssssssssssssssssssssssssssss','qsdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd ddddddddddddddddddddddd','2026-01-28 13:03:03',3,'2026-01-30 16:05:07','une belle description plus ou moins longue');
+INSERT INTO `threads` VALUES (1,'Test','\nWhat is Lorem Ipsum?\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n','2026-01-27 13:03:03',1,'2026-02-02 09:36:26','une belle description plus ou moins longue',1),(2,'Test2','Lorem Ipsum','2026-01-28 13:03:03',2,'2026-02-02 09:53:50','une belle description plus ou moins longue',2),(3,'qsssssssssssssssssssssssssssssssssssssssss','qsdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd ddddddddddddddddddddddd','2026-01-28 13:03:03',3,'2026-02-02 09:36:26','une belle description plus ou moins longue',1),(4,'Le site avance','zugzug','2026-02-02 12:21:43',9,'2026-02-02 12:21:43','Le forum est presque finis',1),(5,'Manque plein de chose quand même','tout plein de messages','2026-02-02 12:30:50',9,'2026-02-02 12:35:17','Genre les messages',2),(6,'Dernier test avant la fin du monde','Le calendrier touche &agrave; sa fin.','2026-02-02 15:28:22',9,'2026-02-02 15:28:22','Les mayas arrivent',2);
 /*!40000 ALTER TABLE `threads` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,4 +169,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-02  9:18:58
+-- Dump completed on 2026-02-04 17:01:26
