@@ -3,8 +3,11 @@
 html, body {
     height: 100%;
     margin: 0;
+    // max-width: 100%;
+    // overflow-y: hidden;
 }
 body{
+    margin: auto;
     display: flex;
     flex-direction: column;
     background-image: url("../assets/images/background_tech.jpg") ;
@@ -16,9 +19,18 @@ main {
     margin: auto;
 }
 
-@media screen and (min-width:978px) {
-    .article_column,nav,header,footer{
-        width: 978px;
-        margin: auto;
+//Tablette
+@media screen and (max-width:1199px) {
+    main{
+        width: min(100%,978px);
     }
 }
+
+//Mobile
+@media screen and (max-width:767px) {
+    html body main{
+        width: 100%;
+    }
+
+}
+

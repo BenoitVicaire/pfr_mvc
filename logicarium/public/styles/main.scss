@@ -1,5 +1,6 @@
 @use "utils/variable";
 @use "components/buttons";
+@use "base/base";
 @use "templates/common/header";
 @use "templates/common/footer";
 @use "templates/common/error";
@@ -9,7 +10,6 @@
 @use "templates/forum/createThread";
 @use "templates/forum/thread";
 @use "templates/forum/createComment";
-@use "base/base";
 @use "templates/login";
 
 

@@ -1,6 +1,7 @@
 @use "../../utils/variable";
 
 footer{
+    width: min(100%,978px);
     display: flex;
     flex-direction: row;
     justify-content: space-between;

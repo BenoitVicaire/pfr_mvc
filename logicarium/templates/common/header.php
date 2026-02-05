@@ -12,6 +12,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
 <header class="commonHeader">
     <div class="header_top">
         <div class="header_top_left">
+            <!-- Image de profil -->
             <div class="header_top_left_left">
                 <img src="assets/images/avatar/avatar_1.png" alt="Profil_picture" id="profil_pic">
                 <button class="switch_picture" id="switch_btn">Avatar</button> 
@@ -28,6 +29,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
                     </div>
                 </div>
             </div>
+            <!-- connexion profil messages -->
             <div class="header_top_left_right">
                 <?php if(isset($_SESSION['logged'])){?>                   
                     <a href="index.php?action=myProfil" data-i18n="profil"></a>
@@ -41,16 +43,26 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
         <div class="header_middle_logo">
             <img src="assets/images/logos/Logicarium_v2.png" alt="Logo logicarium">
         </div>
+        <!-- Langues -->
         <div class="header_top_right">
             <div class="langue">
+                <button
+                    class="langue_toggle"
+                    id="langToggle"
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                >
+                    <span id="currentLang"></span>
+                </button> 
                 <span id="language" data-i18n="language"></span>
-                <div class="flags">
-                    <button class="fi fi-gb active" id="flag_gb" aria-label="English"></button>
-                    <button class="fi fi-fr" id="flag_fr"aria-label="French"></button>
-                </div>
+                    <div class="flags" id="langMenu">
+                        <button class="fi fi-gb active" id="flag_gb" aria-label="English"></button>
+                        <button class="fi fi-fr" id="flag_fr"aria-label="French"></button>
+                    </div>
             </div>
         </div>
     </div>
+    <!-- Navbar -->
     <nav class="mainNav">
         <a href="index.php?action=forum" id="forum">Forum</a>
         <a href="index.php" id="ptd">Accueil</a>

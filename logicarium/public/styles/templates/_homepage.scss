@@ -1,5 +1,7 @@
 @use "../utils/variable";
-
+.article_column{
+    width: 978px;
+}
 .article{
     display: flex;
     flex-direction: column;
@@ -14,8 +16,54 @@
         font-family:variable.$font_main;
         color: variable.$main_white; 
     }
+    img{
+        width: 100%;
+    }
+    
 }
-// .article_column{
-//     width:562px ;
-//     margin: auto;
+
+// @media screen and (min-width:562px) {
+//     main{
+//         width: 562px;
+//     }
+//     .article {
+//         padding: 0 5px 0 5px;
+//     }
+    
+//     .article_column{
+//         width: 100%;
+//         margin: 0;
+//         padding: 0;
+//     }
+    
 // }
+// @media screen and (min-width:978px) {
+//     main{
+//         width: 978px;
+//     }
+    
+//     .article_column{
+//         width: 100%;
+//         margin: auto;
+//     }
+// }
+//Tablette
+@media screen and (max-width:1199px) {
+    .article_column,nav,header,footer{
+        width: 978px;
+        margin: auto;
+    }
+}
+
+//Mobile
+@media screen and (max-width:767px) {
+    .article_column{
+        width: 100%;
+    }
+    .article{
+        max-width: 562px;
+        img{
+            width: 100%;
+        } 
+    }
+}

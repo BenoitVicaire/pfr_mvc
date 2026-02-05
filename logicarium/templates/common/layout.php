@@ -16,14 +16,10 @@ require('footer.php');
     <script type="module" src="../public/js/main.js"></script>
 </head>
 <body data-page="<?= $page ?? '' ?>">
-    <header>
-        <?= $header ?>
-    </header>
+    <?= $header ?>
     <main>
         <?= $content ?>
     </main>
-    <footer>
-        <?= $footer ?>
-    </footer>
+    <?= $footer ?>
 </body>
 </html>
