@@ -11,7 +11,6 @@ html, body {
 }
 
 body {
-  margin: auto;
   display: flex;
   flex-direction: column;
   background-image: url("../assets/images/background_tech.jpg");
@@ -36,6 +35,7 @@ main {
 }
 .commonHeader {
   background-color: #D9D9D9;
+  height: 160px;
   width: min(100%, 978px);
   margin: auto;
   font-family: "MedievalSharp", cursive;
@@ -57,7 +57,7 @@ main {
   flex-direction: row;
   justify-content: space-around;
   border: solid black 1px;
-  height: 120px;
+  height: 75%;
 }
 
 .header_top_left, .header_top_right {
@@ -132,6 +132,16 @@ main {
   transform: scale(1.1);
 }
 
+.menu_toggle {
+  display: none;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .header_top_left {
   border-right: 1px solid black;
 }
@@ -153,6 +163,7 @@ main {
 }
 .langue .flags {
   display: flex;
+  gap: 3px;
   margin-left: 5px;
 }
 .langue #language {
@@ -170,6 +181,7 @@ main {
 
 .mainNav {
   width: 100%;
+  height: 25%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -197,25 +209,25 @@ main {
   .commonHeader {
     width: 100%;
   }
-  .langue {
-    position: relative;
-  }
   #language {
     display: none;
   }
-  .langue_toggle {
+  .langue {
+    position: relative;
+  }
+  .langue .langue_toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     background: none;
     cursor: pointer;
   }
-  .langue_toggle #currentLang {
+  .langue .langue_toggle #currentLang {
     display: inline-block;
     width: 1.5em;
     height: 1em;
   }
-  .flags {
+  .langue .flags {
     display: none;
     position: absolute;
     top: 100%;
@@ -229,13 +241,71 @@ main {
     padding-top: 2px;
     gap: 2px;
   }
-  .flags.open {
+  .langue .flags.open {
     display: flex;
   }
-  .flags button {
+  .langue .flags button {
     width: 100%;
     text-align: left;
     width: 25px;
+  }
+  .header_middle_logo {
+    width: 150px;
+  }
+  .header_middle_logo img {
+    width: 100%;
+  }
+  .header_top_left {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+    height: 100%;
+  }
+  .header_top_left .switch_Picture {
+    margin: 0;
+    padding: 0;
+  }
+  .header_top_left .header_top_left_left {
+    height: 50%;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+  }
+  .header_top_left .header_top_left_right {
+    height: 50%;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+  }
+  .menu_toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  .menu_toggle img {
+    width: 40px;
+  }
+  .link {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #D9D9D9;
+    border: solid black 1px;
+    padding: 0.5rem;
+    z-index: 100;
+  }
+  .link.open {
+    display: flex;
+    gap: 4px;
+  }
+  .link.open a:hover {
+    background-color: gray;
+  }
+  .header_top_left_right {
+    position: relative;
   }
 }
 footer {
@@ -258,6 +328,17 @@ footer a:hover {
   color: #101010;
 }
 
+@media screen and (max-width: 767px) {
+  footer {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+  }
+  footer a {
+    margin: 0;
+    height: 100%;
+  }
+}
 .errorContainer {
   width: 978px;
   height: 100%;
@@ -317,12 +398,6 @@ footer a:hover {
   width: 100%;
 }
 
-@media screen and (max-width: 1199px) {
-  .article_column, nav, header, footer {
-    width: 978px;
-    margin: auto;
-  }
-}
 @media screen and (max-width: 767px) {
   .article_column {
     width: 100%;

@@ -5,20 +5,25 @@ export function initAvatar() {
     const profilePic = document.getElementById("profil_pic");
     const avatarOptions = document.querySelectorAll(".avatar_option");
 
-    // Ouvrir la modale
-    switchBtn.addEventListener("click", () => {
+   // Ouvrir la modale
+    switchBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
         modal.style.display = "block";
     });
     // Fermer la modale a la croix
-    closeBtn.addEventListener("click", () => {
-        modal.style.display = "none";
-    });
-    // Fermer la modale au clic en dehors du cadre
+        closeBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+    // Fermer au clic extérieur
     window.addEventListener("click", (e) => {
-        if (!modal.contains(e.target) && e.target !== switchBtn) {
+        if (
+            !modal.contains(e.target) &&
+            !switchBtn.contains(e.target)
+        ) {
             modal.style.display = "none";
         }
     });
+
     // changer d'avatar
     avatarOptions.forEach(avatar => {
         avatar.addEventListener("click", () => {

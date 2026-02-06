@@ -3,6 +3,7 @@
 
 .commonHeader{
     background-color: variable.$background_secondary;
+    height: 160px;
     width: min(100%,978px);
     margin: auto;
     font-family:variable.$font_subtitle ;
@@ -18,7 +19,8 @@
     flex-direction: row;
     justify-content: space-around;
     border: solid black 1px;
-    height: 120px;
+    // height: 120px;
+    height: 75%;
 }
 .header_top_left,.header_top_right{
     
@@ -101,6 +103,14 @@
             }
     }
 }
+.menu_toggle{
+    display: none;
+}
+.link{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 .header_top_left{
     border-right: 1px solid black;
 }
@@ -120,7 +130,7 @@
     
     .flags{
         display: flex;
-        // gap: 5px;
+        gap: 3px;
         margin-left: 5px;
         
     }
@@ -141,6 +151,7 @@
 
 .mainNav{
     width: 100%;
+    height: 25%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -173,51 +184,116 @@
     .commonHeader{
         width: 100%;
     }
-    // .header_middle_logo{
-    //     display: none;
-    // }
-    .langue{
-        position: relative;
-    }
+    // Langues
     #language{
         display: none;
     }
-    .langue_toggle {
-        display: inline-flex;
-        align-items: center;
+    .langue{
+        position: relative;
+
+        .langue_toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            // padding: 0.4rem;
+            cursor: pointer;
+        }
+        .langue_toggle #currentLang {
+            display: inline-block;
+            width: 1.5em;
+            height: 1em;
+        }
+        .flags{
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            flex-direction: column;
+            background: variable.$main_white;
+            z-index: 10;
+            width: max-content; 
+            border-top: solid black 2px;
+            margin-top: 2px;
+            padding-top: 2px;
+            gap: 2px;
+        }
+        .flags.open {
+            display: flex;
+        }
+
+        .flags button {
+            width: 100%;
+            text-align: left;
+            width: 25px;
+            // padding: 0.4rem 0.6rem;
+        }
+    }
+    // Logo central
+    .header_middle_logo{
+        width:150px;
+        img{
+            width: 100%;
+        }
+    }
+    // Menu bouton
+    .header_top_left{
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        gap: 0;
+        height: 100%;
+
+        .switch_Picture{
+            margin: 0;
+            padding: 0;
+        }
+        .header_top_left_left{
+            height: 50%;
+            margin: 0;
+            padding: 0;  
+            gap: 0;
+        }
+        .header_top_left_right{
+            height: 50%;
+            margin: 0;
+            padding: 0;
+            gap: 0;
+        }
+    }
+ 
+    .menu_toggle{
+        display: flex;
         justify-content: center;
-        background: none;
-        // padding: 0.4rem;
-        cursor: pointer;
+        align-items: center;
+        height: 100%;
+        img{
+            width:40px ;
+        }
     }
-    .langue_toggle #currentLang {
-        display: inline-block;
-        width: 1.5em;
-        height: 1em;
-    }
-    .flags{
+    .link{
         display: none;
         position: absolute;
         top: 100%;
-        left: 0;
-        // transform: translateX(-50%);
-        flex-direction: column;
-        background: variable.$main_white;
-        z-index: 10;
-        width: max-content; 
-        border-top: solid black 2px;
-        margin-top: 2px;
-        padding-top: 2px;
-        gap: 2px;
+        right: 0;
+        background-color: variable.$background_secondary;
+        border: solid black 1px;
+        padding :0.5rem;
+        z-index: 100;
     }
-    .flags.open {
+    .link.open{
         display: flex;
-    }
+        gap: 4px;
+        a{
+            // border-bottom: solid black 1px;
 
-    .flags button {
-        width: 100%;
-        text-align: left;
-        width: 25px;
-        // padding: 0.4rem 0.6rem;
+            &:hover{
+                background-color: gray;
+            }
+        }
+        
+    }
+    .header_top_left_right{
+        position: relative;
     }
 }

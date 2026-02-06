@@ -22,7 +22,6 @@ export function initLangMenu() {
         const isOpen = menu.classList.toggle('open');
         toggle.setAttribute('aria-expanded', isOpen);
     });
-
     // click sur une langue
     menu.querySelectorAll('button').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -45,4 +44,15 @@ export function initLangMenu() {
 
     // init au chargement
     updateCurrentLang();
+}
+
+export function initUserMenu(){
+    const toggle=document.getElementById('menuToggle');
+    const menu=document.getElementById('userMenu');
+
+    toggle.addEventListener('click', (e) =>{
+        const isOpen = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen);
+    })
+    menu.querySelectorAll('button')
 }

@@ -6,12 +6,14 @@ require_once __DIR__ . '/../app/controllers/forumController.php';
 require_once __DIR__ . '/../app/controllers/homepageController.php';
 require_once __DIR__ . '/../app/controllers/contactController.php';
 require_once __DIR__ . '/../app/controllers/messagesController.php';
+require_once __DIR__ . '/../app/controllers/profilController.php';
 
 use App\Controllers\ContactController\Contact;
 use App\Controllers\LoginController\Login;
 use App\Controllers\ForumController\Forum;
 use App\Controllers\HomepageController\Homepage;
 use App\Controllers\MessagesController\Messages;
+use App\Controllers\profilController\Profil;
 
 try{
     $routes =[
@@ -25,6 +27,7 @@ try{
         'homepage' => fn() =>(new Homepage())->displayHomepage(),
         'thread' => fn() =>(new Forum())->displayThread($_GET['thread_id']),
         'contact' => fn() =>(new Contact())->displayContact(),
+        'myProfil' => fn() =>(new Profil())->displayProfil(),
         'messages' => fn() =>(new Messages())->displayMessages(),
         'createComment' => fn() =>(new Forum())->createComment($_GET['thread_id']),
         'submitCreateComment' => fn() =>(new Forum())->submitCreateComment($_POST['thread_id'],$_POST['content']),

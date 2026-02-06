@@ -14,8 +14,8 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
         <div class="header_top_left">
             <!-- Image de profil -->
             <div class="header_top_left_left">
-                <img src="assets/images/avatar/avatar_1.png" alt="Profil_picture" id="profil_pic">
-                <button class="switch_picture" id="switch_btn">Avatar</button> 
+
+                <button class="switch_picture" id="switch_btn"><img src="assets/images/avatar/avatar_1.png" alt="Profil_picture" id="profil_pic"></button> 
 
                 <div class="modal" id="profil_modal">
                     <div class="modal_content">
@@ -31,13 +31,23 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
             </div>
             <!-- connexion profil messages -->
             <div class="header_top_left_right">
-                <?php if(isset($_SESSION['logged'])){?>                   
-                    <a href="index.php?action=myProfil" data-i18n="profil"></a>
-                    <a href="index.php?action=logout"data-i18n="logout"></a>
-                <?php }else{?>
-                    <a id="loginLink" href="index.php?action=login&tab=connexion"data-i18n="login"></a>
-                <?php } ?>
-                <a href="index.php?action=messages"data-i18n="messages"></a>
+                <button
+                    class="menu_toggle"
+                    id="menuToggle"
+                    aria-expanded="flase"
+                    aria-haspopup="menu"
+                >
+                    <img src="assets/icons/user-solid-full.svg" alt="user icon">
+                </button>
+                <div class="link" id="userMenu">
+                    <?php if(isset($_SESSION['logged'])){?>                   
+                        <a href="index.php?action=myProfil" data-i18n="profil"></a>
+                        <a href="index.php?action=logout"data-i18n="logout"></a>
+                    <?php }else{?>
+                        <a id="loginLink" href="index.php?action=login&tab=connexion"data-i18n="login"></a>
+                    <?php } ?>
+                    <a href="index.php?action=messages"data-i18n="messages"></a>
+                </div>
             </div>
         </div>
         <div class="header_middle_logo">

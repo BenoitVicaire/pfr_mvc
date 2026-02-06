@@ -1,5 +1,5 @@
 // import { setLanguage } from './langue.js'
-import { initLangMenu } from "./header.js";
+import { initLangMenu, initUserMenu } from "./header.js";
 import { initAvatar } from "./avatar.js";
 import { category } from "./forum.js";
 import { setLanguage } from "./langue.js";
@@ -8,6 +8,7 @@ import { initLogin } from "./login.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     initLangMenu();
+    initUserMenu();
     
 // Langue active : 
     const storedLang = localStorage.getItem("lang");
