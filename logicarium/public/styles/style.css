@@ -205,6 +205,18 @@ main {
   animation-fill-mode: forwards;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 @media screen and (max-width: 767px) {
   .commonHeader {
     width: 100%;
@@ -403,7 +415,7 @@ footer a:hover {
     width: 100%;
   }
   .article {
-    max-width: 562px;
+    max-width: min(100%, 562px);
   }
   .article img {
     width: 100%;
@@ -677,15 +689,6 @@ footer a:hover {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-}
-.formCreateComment .labelCell {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-}
-.formCreateComment #formCreateCommentContentLabel {
-  grid-column: 1;
-  grid-row: 1;
 }
 .formCreateComment #formCreateThreadContent {
   grid-column: 2;

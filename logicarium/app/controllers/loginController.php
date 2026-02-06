@@ -28,9 +28,11 @@ class Login {
             $_SESSION['user'] = [
                 'id' => $user['id'],
                 'email' => $user['email'],
+                'avatar_url' => $user['url'],
 
             ];
             $_SESSION['logged']=true;
+
             header('Location: index.php?action=login');
         }else{
             throw new \Exception('Identifiant incorrect');

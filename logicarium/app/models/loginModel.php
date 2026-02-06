@@ -21,8 +21,10 @@ class LoginRepository{
 
     public function getUserByEmail($email){
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT u.id, u.password, u.email
+            "SELECT u.id, u.password, u.email, a.url
             FROM users u
+            JOIN avatar a
+                ON u.avatar_id = a.id
             WHERE u.email = :email
             LIMIT 1;"
         );

@@ -31,6 +31,7 @@ try{
         'messages' => fn() =>(new Messages())->displayMessages(),
         'createComment' => fn() =>(new Forum())->createComment($_GET['thread_id']),
         'submitCreateComment' => fn() =>(new Forum())->submitCreateComment($_POST['thread_id'],$_POST['content']),
+        'updateAvatar' => fn() =>(new Profil())->updateAvatar(),
         '' => fn() =>(new Homepage())->displayHomepage(),
     ];
     

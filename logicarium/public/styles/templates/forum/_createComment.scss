@@ -16,16 +16,7 @@
         height: 100%;            
         box-sizing: border-box;
     }
-    .labelCell{
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-start;
-    }
 
-    #formCreateCommentContentLabel{
-    grid-column: 1;
-    grid-row: 1;
-    }
 
     #formCreateThreadContent{
         grid-column: 2;

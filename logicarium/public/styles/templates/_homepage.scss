@@ -58,7 +58,7 @@
         width: 100%;
     }
     .article{
-        max-width: 562px;
+        max-width: min(100%,562px);
         img{
             width: 100%;
         } 

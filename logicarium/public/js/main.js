@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     document.getElementById("flag_gb").addEventListener("click", () => setLanguage("gb"));
 
+    
     initAvatar();
  
     if (document.body.dataset.page === 'forum') {

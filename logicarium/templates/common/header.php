@@ -13,31 +13,33 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
     <div class="header_top">
         <div class="header_top_left">
             <!-- Image de profil -->
-            <div class="header_top_left_left">
+            <?php if($loggedState): ?>
+                <div class="header_top_left_left">
+                    <button class="switch_picture" id="switch_btn"><img src=<?= $_SESSION['user']['avatar_url'] ?> alt="Profil_picture" id="profil_pic"></button> 
 
-                <button class="switch_picture" id="switch_btn"><img src="assets/images/avatar/avatar_1.png" alt="Profil_picture" id="profil_pic"></button> 
-
-                <div class="modal" id="profil_modal">
-                    <div class="modal_content">
-                        <span class="close">&times;</span>
-                        <h3>Change Avatar</h3>
-                        <div class="avatars">
-                            <img src="assets/images/avatar/avatar_1.png" alt="Trickster avatar" class="avatar_option">
-                            <img src="assets/images/avatar/avatar_2.png" alt="Witch avatar" class="avatar_option">
-                            <img src="assets/images/avatar/avatar_3.png" alt="Chieftain avatar" class="avatar_option">
+                    <div class="modal" id="profil_modal">
+                        <div class="modal_content">
+                            <span class="close">&times;</span>
+                            <h3>Change Avatar</h3>
+                            <div class="avatars">
+                                <img src="assets/images/avatar/avatar_1.png" alt="Trickster avatar" class="avatar_option" data-avatar-id="0">
+                                <img src="assets/images/avatar/avatar_2.png" alt="Witch avatar" class="avatar_option" data-avatar-id="1">
+                                <img src="assets/images/avatar/avatar_3.png" alt="Chieftain avatar" class="avatar_option" data-avatar-id="2">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php endif ?>
             <!-- connexion profil messages -->
             <div class="header_top_left_right">
                 <button
                     class="menu_toggle"
                     id="menuToggle"
-                    aria-expanded="flase"
+                    aria-expanded="false"
                     aria-haspopup="menu"
                 >
                     <img src="assets/icons/user-solid-full.svg" alt="user icon">
+                    <span class="sr-only">Menu utilisateur</span>
                 </button>
                 <div class="link" id="userMenu">
                     <?php if(isset($_SESSION['logged'])){?>                   
