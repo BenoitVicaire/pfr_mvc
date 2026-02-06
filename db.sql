@@ -83,7 +83,7 @@ CREATE TABLE `comments` (
   KEY `comments_ibfk_2` (`thread_id`),
   CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`thread_id`) REFERENCES `threads` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,8 +92,32 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (0,'Il est super top ce thread, trop bien de ouf','2026-01-27 13:03:03',1,1),(1,'Bouhhh trop naze','2026-01-27 13:03:03',2,1),(2,'zugzug','2026-02-02 16:27:44',9,4);
+INSERT INTO `comments` VALUES (0,'Il est super top ce thread, trop bien de ouf','2026-01-27 13:03:03',1,1),(1,'Bouhhh trop naze','2026-01-27 13:03:03',2,1),(2,'zugzug','2026-02-02 16:27:44',9,4),(3,'Ceci est un commentaire.','2026-02-06 12:32:00',13,4);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `roles`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'basic_user'),(2,'moderator'),(3,'admin');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -144,10 +168,13 @@ CREATE TABLE `users` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `email` varchar(255) NOT NULL,
   `avatar_id` int(10) unsigned DEFAULT NULL,
+  `roles_id` int(11) DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `fk_avatar` (`avatar_id`),
-  CONSTRAINT `fk_avatar` FOREIGN KEY (`avatar_id`) REFERENCES `avatar` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  KEY `fk_users_roles` (`roles_id`),
+  CONSTRAINT `fk_avatar` FOREIGN KEY (`avatar_id`) REFERENCES `avatar` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_users_roles` FOREIGN KEY (`roles_id`) REFERENCES `roles` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +183,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'bob','$2y$10$FvfDKWH8KJ1Bt4PZnfNdj.IbtqqLSrXExNIWteCgm80lzhyzggmoe','2026-01-27 13:03:03','test@test.com',NULL),(2,'bob','$2y$10$TueRuBOyaM2QX3ei1a5dwuiIEZ5YZl6YtHX9HrPE8351IYuTONh0G','2026-01-27 13:07:42','test1@test.com',NULL),(3,'laureneavecunnomaralongedefoufurieux','$2y$10$8dSB4eUNXQ4XCusx0ZdbI.9ZvXYB2XSI03cShAnqET509luHpX4CC','2026-01-27 14:11:35','laurene.castor@exemple.com',NULL),(4,'jon','$2y$10$.nbN4Qt7HL4mpsRaLUMVa.n0IDas2TPWPEMXPlIkT3PsPg957GSWa','2026-01-27 14:33:19','jon@test.com',NULL),(5,'qsdqs','$2y$10$k1XudpwTeTYLeK/QNu8HG.hKy60YhjWiJbpq6NzVl1BdUMM8ZBsL2','2026-01-27 14:34:44','test2@test.com',NULL),(6,'azert','$2y$10$JWCEe4bjQa/uoiuefhpNT.DbrkSJqoUVCazltGELwgfjfpizWt2ZG','2026-01-27 14:35:18','test3@test.com',NULL),(7,'qsdqsd','$2y$10$nPnRmFwiiaGprtOvnsCOmeIcLG1B/4dVuYxlfx5UozylFoSsKSLQC','2026-01-27 14:36:00','test10@test.com',NULL),(8,'azer','$2y$10$01UpqRQTe7vFv9.TIH.EGe51gKqwUZ/5Jqkad8djRkw3G8AZYHthG','2026-01-27 14:36:30','qsdqs@gmail.com',NULL),(9,'1234','$2y$10$f0fwUUHNJx6A02pUYtdjNubdOsJf43sQdPwyHEDqbODfO2yCcEc7i','2026-01-29 14:19:35','1234@gmail.com',NULL),(10,'benito','$2y$10$KLdlz0G11iX/3CQCY2NmGuLr5DkLGBISaKMV6puyB.CEzBQAqhqZ2','2026-01-29 16:21:21','testing2@gmail.com',NULL),(11,'jojo','$2y$10$aH0B.XwoqdxqO9yx6I5.bu0qByk3eJxhoTX35KtiCzvLj9MRcRMHy','2026-01-29 16:45:43','joseph@gmail.com',NULL),(12,'zugzug','$2y$10$ZYHHaFgpvojNdpYS4j46kudzBqUDndEU3qPU1sHawwtSixiGmY9t2','2026-01-29 17:09:04','zugzug@gmail.com',NULL);
+INSERT INTO `users` VALUES (1,'bob','$2y$10$FvfDKWH8KJ1Bt4PZnfNdj.IbtqqLSrXExNIWteCgm80lzhyzggmoe','2026-01-27 13:03:03','test@test.com',NULL,1),(2,'bob','$2y$10$TueRuBOyaM2QX3ei1a5dwuiIEZ5YZl6YtHX9HrPE8351IYuTONh0G','2026-01-27 13:07:42','test1@test.com',NULL,1),(3,'laureneavecunnomaralongedefoufurieux','$2y$10$8dSB4eUNXQ4XCusx0ZdbI.9ZvXYB2XSI03cShAnqET509luHpX4CC','2026-01-27 14:11:35','laurene.castor@exemple.com',NULL,1),(4,'jon','$2y$10$.nbN4Qt7HL4mpsRaLUMVa.n0IDas2TPWPEMXPlIkT3PsPg957GSWa','2026-01-27 14:33:19','jon@test.com',NULL,1),(5,'qsdqs','$2y$10$k1XudpwTeTYLeK/QNu8HG.hKy60YhjWiJbpq6NzVl1BdUMM8ZBsL2','2026-01-27 14:34:44','test2@test.com',NULL,1),(6,'azert','$2y$10$JWCEe4bjQa/uoiuefhpNT.DbrkSJqoUVCazltGELwgfjfpizWt2ZG','2026-01-27 14:35:18','test3@test.com',NULL,1),(7,'qsdqsd','$2y$10$nPnRmFwiiaGprtOvnsCOmeIcLG1B/4dVuYxlfx5UozylFoSsKSLQC','2026-01-27 14:36:00','test10@test.com',NULL,1),(8,'azer','$2y$10$01UpqRQTe7vFv9.TIH.EGe51gKqwUZ/5Jqkad8djRkw3G8AZYHthG','2026-01-27 14:36:30','qsdqs@gmail.com',NULL,1),(9,'1234','$2y$10$f0fwUUHNJx6A02pUYtdjNubdOsJf43sQdPwyHEDqbODfO2yCcEc7i','2026-01-29 14:19:35','1234@gmail.com',NULL,1),(10,'benito','$2y$10$KLdlz0G11iX/3CQCY2NmGuLr5DkLGBISaKMV6puyB.CEzBQAqhqZ2','2026-01-29 16:21:21','testing2@gmail.com',NULL,1),(11,'jojo','$2y$10$aH0B.XwoqdxqO9yx6I5.bu0qByk3eJxhoTX35KtiCzvLj9MRcRMHy','2026-01-29 16:45:43','joseph@gmail.com',NULL,1),(12,'zugzug','$2y$10$ZYHHaFgpvojNdpYS4j46kudzBqUDndEU3qPU1sHawwtSixiGmY9t2','2026-01-29 17:09:04','zugzug@gmail.com',NULL,1),(13,'ADMIN','$2y$10$7zC4w9SzCdkv4nsu0wkcre6W1v6xlxLNoiIlZVWwVU9Z01PBHodsO','2026-02-05 09:46:59','admin@gmail.com',2,3);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -169,4 +196,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-04 17:01:26
+-- Dump completed on 2026-02-06 16:38:19

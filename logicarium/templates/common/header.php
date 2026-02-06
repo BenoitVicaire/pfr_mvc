@@ -51,7 +51,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
             </div>
         </div>
         <div class="header_middle_logo">
-            <img src="assets/images/logos/Logicarium_v2.png" alt="Logo logicarium">
+            <a href="index.php"><img src="assets/images/logos/Logicarium_v2.png" alt="Logo logicarium"></a>
         </div>
         <!-- Langues -->
         <div class="header_top_right">
