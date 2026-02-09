@@ -47,7 +47,6 @@ const translation = {
 		legal:"Legal mention",
 		tos:"Terme of use",
 		contact_support:"Contact support",
-		//
 		login_title: "Login",
 		tab_register: "Sign up",
 		tab_login: "Log in",
@@ -70,7 +69,6 @@ const translation = {
 export function setLanguage(lang) {
 	document.querySelectorAll("[data-i18n]").forEach(el=>{
 		const key =el.getAttribute("data-i18n");
-
 		if(translation[lang][key]){
 			el.textContent = translation[lang][key];
 		}

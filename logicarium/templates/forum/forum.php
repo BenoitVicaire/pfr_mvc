@@ -15,7 +15,7 @@ ob_start() ?>
     </section>
     <section class="forumCore">
         <?php 
-        foreach ($categorys as $category) { ?>
+        foreach ($categories as $category) { ?>
             <div class="collapsible">
                 <div class="category">
                     <h2 class="category-title" data-category-id="<?= $category->id ?>">

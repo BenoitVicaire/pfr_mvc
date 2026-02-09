@@ -5,7 +5,7 @@ ob_start() ?>
     <div id="formCreateThreadCategory" class="formInputArea">
         <select name="category_id" id="categorieSelect" required>
                 <option value="">--Veuillez choisir une catégorie</option>
-            <?php foreach ($categorys as $category){ ?>
+            <?php foreach ($categories as $category){ ?>
                 <option value=<?= $category->id ?>><?= $category->name ?></option>
             <?php } ?> 
         </select>

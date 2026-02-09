@@ -1,19 +1,16 @@
 <?php
-namespace App\controllers\loginController;
+namespace App\Controllers\LoginController;
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once __DIR__ . '/../utils/database.php';
-require_once __DIR__ . '/../models/loginModel.php';
-
 use App\Model\LoginModel\LoginRepository;
-use App\model\LoginModel\User;
-use App\Utils\Database\DatabaseConnection;
+use App\Model\UserModel\User;
+use App\Utils\DatabaseConnection;
 
 class Login {
     // Verifie email et password => connecte user
-    public function login(string $email,string $password){
+    public function login(string $email,string $password): void{
         if(!$email || !$password){
             throw new \Exception('Idendifiant manquants');  
         }
@@ -26,23 +23,24 @@ class Login {
 
         if(password_verify($password,$user['password'])){
             $_SESSION['user'] = [
-                'id' => $user['id'],
-                'email' => $user['email'],
-
+                'id' => $user->getId(),
+                'email' => $user->getEmail(),
             ];
             $_SESSION['logged']=true;
             header('Location: index.php?action=login');
+            exit;
         }else{
             throw new \Exception('Identifiant incorrect');
         }
     }
     // Déconnexion
-    public function logout(){
+    public function logout():void{
         session_destroy();
         header('Location: index.php');
+        exit;
     }
     // Créer un compte utilisateur
-    public function createAccount(string $email, string $password, string $password2, string $name){
+    public function createAccount(string $email, string $password, string $password2, string $name):void{
         if(!isset($email, $password, $password2, $name)){
             throw new \Exception("Informations manquantes");
         }
@@ -70,16 +68,17 @@ class Login {
         }
         // Créer le compte
         $user=new User;
-        $user->email=$email;
-        $user->password=$passwordHashed;
-        $user->name=$name;
+        $user->setEmail($email);
+        $user->setPassword($passwordHashed);
+        $user->setName($name);
 
         $loginRepository->createAccount($user);
         $_SESSION['flash_succes']= "Le compte a été crée avec succès";
         header('Location: index.php?action=login&tab=connexion');
+        exit;
     }
 
-    public function displayLoginPage(){
+    public function displayLoginPage():void{
         $succesMessage = $_SESSION['flash_succes'] ?? '';
         unset($_SESSION['flash_succes']);
         require_once __DIR__ . '/../../templates/login.php';

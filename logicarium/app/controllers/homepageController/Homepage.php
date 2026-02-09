@@ -8,6 +8,6 @@ class Homepage
 {
     public function displayHomepage()
     {
-        require __DIR__ . '/../../templates/homepage.php';
+        require __DIR__ . '/../../../templates/homepage.php';
     }
 }

@@ -1,30 +1,11 @@
 <?php 
-namespace App\Model\ForumModel;
-use App\Utils\Database\DatabaseConnection;
-class Category{
-    public int $id;
-    public string $name;
-    public string $description;
-}
 
-class Thread{
-    public int $id;
-    public string $title;
-    public string $category_id;
-    public string $description;
-    public string $content;
-    public string $created_at;
-    public string $created_by;
-    public string $last_update;
-    public ?string $last_answer=null;
-}
-class Comment{
-    public int $id;
-    public string $content;
-    public string $created_at;
-    public string $created_by;
-    public string $thread_id;
-}
+namespace App\Model\ForumModel;
+
+use App\Utils\Database\DatabaseConnection;
+use App\Model\ThreadModel\Thread;
+use App\Model\CategoryModel\Category;
+use App\Model\CommentModel\Comment;
 
 class ForumRepository{
     private DatabaseConnection $connection;
@@ -34,7 +15,7 @@ class ForumRepository{
     }
                                     // Partie Thread
     // Retourne toutes les catégories
-    public function getCategorys(){
+    public function getCategories():array{
         $sql=
         "SELECT
             c.id,
@@ -44,16 +25,16 @@ class ForumRepository{
 
         $statement = $this->connection->getConnection()->query($sql);
 
-        $categorys=[];
+        $categories=[];
         while(($row = $statement->fetch())){
             $category = new Category();
-            $category->id=(int) $row['id'];
-            $category->name=$row['name'];
-            $category->description=$row['description'];
+            $category->setId((int)$row['id']);
+            $category->setName($row['name']);
+            $category->setDescription($row['description']);
 
-            $categorys[]=$category;
+            $categories[]=$category;
         }
-        return $categorys;
+        return $categories;
     }
                                     // Partie Thread
     // Retourne la liste des threads par categories
@@ -65,6 +46,7 @@ class ForumRepository{
             t.description AS thread_description,
             t.content,
             t.category_id,
+            t.created_by,
             u.name,
             c.id AS category_id,
             c.name AS category_name,
@@ -84,13 +66,13 @@ class ForumRepository{
         $threadsByCategory=[];
         while (($row = $statement->fetch())){
             $thread = new Thread();
-            $thread->id =(int) $row['thread_id'];
-            $thread->title = $row['title'];
-            $thread->description = $row['thread_description'];
-            $thread->content = $row['content'];
-            $thread->created_by = $row['name'];
-            $thread->created_at = $row['created_at'];
-            $thread->last_update = $row['last_update'];
+            $thread->setId($row['thread_id']);
+            $thread->setTitle($row['title']);
+            $thread->setDescription($row['thread_description']);
+            $thread->setContent($row['content']);
+            $thread->setCreatedBy($row['name']);
+            $thread->setCreatedAt($row['created_at']);
+            $thread->setLastUpdate($row['last_update']);
 
             $categoryId = (int) $row['category_id'];
 
@@ -108,13 +90,14 @@ class ForumRepository{
         return $threadsByCategory;
     }
     // Prend un id, retourne le Thread correspondant
-    public function getThreadById($thread_id):Thread{
+    public function getThreadById(int $thread_id):Thread{
         $statement = $this->connection->getConnection()->prepare(
             "SELECT 
                 t.id,
                 t.title,
                 t.description,
                 t.content,
+                t.created_by,
                 u.name,
                 DATE_FORMAT(t.created_at,'%d/%m/%Y à %Hh%imin') as created_at,
                 DATE_FORMAT(t.last_update, '%d/%m/%Y à %Hh%imin') as last_update
@@ -130,13 +113,14 @@ class ForumRepository{
         }
 
         $thread = new Thread();
-        $thread->id =(int) $data['id'];
-        $thread->title = $data['title'];
-        $thread->description = $data['description'];
-        $thread->content = $data['content'];
-        $thread->created_by = $data['name'];
-        $thread->created_at = $data['created_at'];
-        $thread->last_update = $data['last_update'];
+        $thread->setId((int)$data['id']);
+        $thread->setTitle($data['title']);
+        $thread->setDescription($data['description']);
+        $thread->setContent($data['content']);
+        $thread->setCreatedBy((int)$data['created_by']);
+        $thread->setCreatedByName($data['name']); 
+        $thread->setCreated_at($data['created_at']);
+        $thread->setLast_update($data['last_update']);
             
         return $thread;
     }
@@ -146,18 +130,18 @@ class ForumRepository{
             "INSERT INTO threads(`title`, `category_id`, `description`, `content`, `created_at`, `created_by`, `last_update`)VALUES( ?, ?, ?, ?, NOW(), ?, NOW())"
         );
         $statement->execute([
-            $thread->title,
-            $thread->category_id,
-            $thread->description,
-            $thread->content,
-            $thread->created_by,
+            $thread->getTitle(),
+            $thread->getCategoryId(),
+            $thread->getDescription(),
+            $thread->getContent(),
+            $thread->getCreatedBy(),
         ]);
         return (int) $this->connection->getConnection()->lastInsertId();
     }
 
                                     //Partie Comments
     // Prend un thread_id, return la liste des commentaires de ce thread
-    public function getCommentsByThreadId($thread_id):array{
+    public function getCommentsByThreadId(int $thread_id):array{
         $statement= $this->connection->getConnection()->prepare(
             "SELECT
             c.id,
@@ -176,10 +160,10 @@ class ForumRepository{
         $comments=[];
         while(($row = $statement->fetch())){
             $comment = new Comment();
-            $comment->id=(int) $row['id'];
-            $comment->content= $row['content'];
-            $comment->created_at= $row['created_at'];
-            $comment->created_by= $row['created_by'];
+            $comment->setId((int)$row['id']);
+            $comment->setContent($row['content']);
+            $comment->setCreated_at($row['created_at']);
+            $comment->setCreated_by($row['created_by']);
 
             $comments[]= $comment;
         }
@@ -192,11 +176,9 @@ class ForumRepository{
             "INSERT INTO comments( `content`, `created_at`, `created_by`, `thread_id`)VALUES( ?, NOW(), ?, ? )"
         );
     return $statement->execute([
-        $comment->content,
-        $comment->created_by,
-        $comment->thread_id,
+        $comment->getContent(),
+        $comment->getCreated_by(),
+        $comment->getThread_id(),
         ]);
     }
-    
-
 }

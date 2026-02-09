@@ -8,6 +8,6 @@ class Contact
 {
     public function displayContact()
     {
-        require __DIR__ . '/../../templates/contact.php';
+        require __DIR__ . '/../../../templates/contact.php';
     }
 }

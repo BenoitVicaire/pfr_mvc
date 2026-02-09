@@ -1,9 +1,8 @@
 <?php 
-namespace App\Controllers\forumController;
+namespace App\Controllers\ForumController;
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-require_once __DIR__ . '/../models/forumModel.php';
 
 use App\Model\ForumModel\Category;
 use App\Model\ForumModel\Comment;
@@ -14,14 +13,14 @@ use App\Utils\Database\DatabaseConnection;
 class Forum{
     public function displayForum(){
         $forumRepository = new ForumRepository(new DatabaseConnection());
-        $categorys = $forumRepository->getCategorys();
+        $categories = $forumRepository->getCategories();
         $threadsByCategory = $forumRepository->getThreadsByCategory();
         require __DIR__ . '/../../templates/forum/forum.php';
     }
 
     public function createNewThread(){
         $forumRepository = new ForumRepository(new DatabaseConnection());
-        $categorys = $forumRepository->getCategorys();
+        $categories = $forumRepository->getCategories();
         require __DIR__ . '/../../templates/forum/createThread.php';
     }
 
@@ -38,12 +37,13 @@ class Forum{
         $description=htmlentities(strip_tags($postData['description']), ENT_QUOTES, 'UTF-8');
         $content=htmlentities(strip_tags($postData['content']), ENT_QUOTES, 'UTF-8');
         
-        $thread =new Thread;
-        $thread->title=$title;
-        $thread->category_id=$category_id;
-        $thread->description=$description;
-        $thread->content=$content;
-        $thread->created_by=$_SESSION['user']['id'];
+        $thread = new Thread();
+        $thread->setTitle($title);
+        $thread->setCategoryId((int)$category_id);
+        $thread->setDescription($description);
+        $thread->setContent($content);
+        $thread->setCreatedBy((int)$_SESSION['user']['id']);
+
 
 
         $forumRepository = new ForumRepository(new DatabaseConnection());
@@ -51,7 +51,7 @@ class Forum{
         header('Location: index.php?action=thread&thread_id=' . $thread_Id);
     }
 
-    public function displayThread($thread_id){
+    public function displayThread(int $thread_id){
         if(!isset($_GET['thread_id']) || $_GET['thread_id']<1){
             throw new \Exception("Le thread n'existe pas");
         }
@@ -61,7 +61,7 @@ class Forum{
         require __DIR__ . '/../../templates/forum/thread.php';
     }
 
-    public function createComment($thread_id){
+    public function createComment(int $thread_id){
          if(!isset($_GET['thread_id']) || $_GET['thread_id']<1){
             throw new \Exception("Le thread n'existe pas");
         }
@@ -70,7 +70,7 @@ class Forum{
         require __DIR__ . '/../../templates/forum/createComment.php';
     }
 
-    public function submitCreateComment($thread_id){
+    public function submitCreateComment(int $thread_id){
         if(!isset($_SESSION['user']['id'])){
             throw new \Exception("Vous devez être connecté pour effectué cette action");
         }
@@ -81,10 +81,11 @@ class Forum{
         }
         $content=htmlentities(strip_tags($postData['content']), ENT_QUOTES, 'UTF-8');
         
-        $comment =new Comment;
-        $comment->content=$content;
-        $comment->created_by=$_SESSION['user']['id'];
-        $comment->thread_id=$thread_id;
+        $comment = new Comment();
+        $comment->setContent($content);
+        $comment->setCreatedBy((int)$_SESSION['user']['id']);
+        $comment->setThreadId((int)$thread_id);
+
 
 
         $forumRepository = new ForumRepository(new DatabaseConnection());

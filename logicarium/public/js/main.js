@@ -11,9 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
     initUserMenu();
     
 // Langue active : 
+    const defaultLang="fr";
     const storedLang = localStorage.getItem("lang");
     if (storedLang) {
         setLanguage(storedLang);
+    }else{
+        setLanguage(defaultLang);
     }
     
     const flags = document.querySelectorAll(".flags button");

@@ -1,12 +1,11 @@
 <?php
 session_start();
 
-require_once __DIR__ . '/../app/controllers/loginController.php';
-require_once __DIR__ . '/../app/controllers/forumController.php';
-require_once __DIR__ . '/../app/controllers/homepageController.php';
-require_once __DIR__ . '/../app/controllers/contactController.php';
-require_once __DIR__ . '/../app/controllers/messagesController.php';
-require_once __DIR__ . '/../app/controllers/profilController.php';
+require_once __DIR__ . '/../app/Utils/Autoloader.php';
+
+use App\Utils\Autoloader;
+
+Autoloader::register();
 
 use App\Controllers\ContactController\Contact;
 use App\Controllers\LoginController\Login;
