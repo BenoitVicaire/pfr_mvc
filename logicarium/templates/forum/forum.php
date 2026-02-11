@@ -62,4 +62,3 @@ ob_start() ?>
 </div>
 
 <?php $content = ob_get_clean(); ?>
-<?php require ROOT . 'templates\common\layout.php' ?>
