@@ -26,6 +26,7 @@
             a{
                 color:variable.$main_white;
                 font-family: variable.$font_subtitle;
+                
 
             }
             a:link{
@@ -47,10 +48,14 @@
         h2{
             margin: 0;
             padding: 0;
+            cursor: pointer;
         }
         p{
             margin: 0;
             padding: 0;
+        }
+        a{
+            cursor: pointer;
         }
     }
     // collapsable menu

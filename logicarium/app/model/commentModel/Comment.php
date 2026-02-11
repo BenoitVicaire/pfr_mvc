@@ -7,6 +7,7 @@ class Comment{
     private string $content;
     private string $created_at;
     private int $created_by;
+    private string $created_by_name;
     private int $thread_id;
 
      // Constructor
@@ -28,6 +29,9 @@ class Comment{
 
     public function getCreatedBy(): int { return $this->created_by; }
     public function setCreatedBy(int $created_by): self { $this->created_by = $created_by; return $this; }
+
+    public function getCreatedByName(): string { return $this->created_by_name; }
+    public function setCreatedByName(string $created_by_name): self { $this->created_by_name = $created_by_name; return $this; }
 
     public function getThreadId(): int { return $this->thread_id; }
     public function setThreadId(int $thread_id): self { $this->thread_id = $thread_id; return $this; }

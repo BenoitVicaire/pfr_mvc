@@ -1,7 +1,9 @@
 <?php $title="Forum";
 $page = 'forum';
 $breadcrumb=true;
+
 ob_start() ?>
+
 <div class="forum">
     <section class="heading">
         <h2>Forum</h2>
@@ -18,39 +20,41 @@ ob_start() ?>
         foreach ($categories as $category) { ?>
             <div class="collapsible">
                 <div class="category">
-                    <h2 class="category-title" data-category-id="<?= $category->id ?>">
-                        <?= htmlspecialchars($category->name) ?>
+                    <h2 class="category-title" data-category-id="<?= $category->getId() ?>">
+                        <?= htmlspecialchars($category->getName()) ?>
                         <span class="arrow">▾</span>
-                    </h2>
-                    <p><?= htmlspecialchars($category->description) ?></p>
+                    <p><?= htmlspecialchars($category->getDescription()) ?></p>
                 </div>
 
-                    <?php $categoryThreads = $threadsByCategory[$category->id]['threads'] ?? []; ?>
+                    <?php $categoryThreads = $threadsByCategory[$category->getId()]['threads'] ?? []; ?>
                     <?php if (!empty($categoryThreads)){ ?>
                         <?php foreach ($categoryThreads as $thread){ ?>
                             <section class="thread">
                                 <div class="threadLeft">
                                     <h3 class="threadLeftTop">
-                                        <a href="index.php?action=thread&thread_id=<?= $thread->id ?>"><?= htmlspecialchars(substr($thread->title,0,70)); ?></a>
+                                        <a href="index.php?action=thread&thread_id=<?= $thread->getId() ?>"><?= htmlspecialchars(substr($thread->getTitle(),0,70)); ?></a>
+                                        
                                     </h3>
+                                    
                                     <div class="threadDescription">
-                                        <?= htmlspecialchars(substr($thread->description,0,70)); ?>
+                                        <?= htmlspecialchars(substr($thread->getDescription(),0,70)); ?>
                                     </div>
                                 </div>
+                                
                                 <div class="threadDetail">
                                     <span class="threadLabelCreatedBy">Créer par </span>
-                                    <span class="threadCreatedBy"> <?= htmlspecialchars(substr($thread->created_by, 0, 15)); ?></span>
-                                    <span class="threadCreatedAt"> Le <?= htmlspecialchars($thread->created_at); ?></span>
+                                    <span class="threadCreatedBy"> <?= htmlspecialchars(substr($thread->getCreatedByName(), 0, 15)); ?></span>
+                                    <span class="threadCreatedAt"> Le <?= htmlspecialchars($thread->getCreatedAt()); ?></span>
 
-                                    <?php if($thread->last_answer): ?>                    
+                                    <?php if($thread->getLastAnswer()): ?>                    
                                         <span class="threadLabelLastAnswer">Dernière réponse </span>
                                         <span class="threadLastAnswer"><?=
-                                        htmlspecialchars($thread->last_answer)?></span>
+                                        htmlspecialchars($thread->getLastAnswer())?></span>
                                         <?php else: ?>
                                         <span class="threadLastAnswer">Aucune réponse</span>
                                     <?php endif ?>
 
-                                    <span class="threadLastUpdate"><?= htmlspecialchars($thread->last_update); ?></span>
+                                    <span class="threadLastUpdate"><?= htmlspecialchars($thread->getLastUpdate()); ?></span>
                                 </div>
                             </section> 
                         <?php 
@@ -62,4 +66,3 @@ ob_start() ?>
 </div>
 
 <?php $content = ob_get_clean(); ?>
-<?php require __DIR__ . '/../common/layout.php' ?>

@@ -449,10 +449,14 @@ footer a:hover {
 .forum .category h2 {
   margin: 0;
   padding: 0;
+  cursor: pointer;
 }
 .forum .category p {
   margin: 0;
   padding: 0;
+}
+.forum .category a {
+  cursor: pointer;
 }
 .forum .collapsible .thread {
   display: none;

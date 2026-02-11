@@ -45,9 +45,9 @@ class ForumRepository{
             t.title,
             t.description AS thread_description,
             t.content,
-            t.category_id,
+            t.category_id AS thread_category_id,
             t.created_by,
-            u.name,
+            u.name AS created_by_name,
             c.id AS category_id,
             c.name AS category_name,
             c.description AS category_description,
@@ -66,10 +66,13 @@ class ForumRepository{
         $threadsByCategory=[];
         while (($row = $statement->fetch())){
             $thread = new Thread();
+            $thread->setId($row['thread_id']);
             $thread->setTitle($row['title']);
+            $thread->setCategoryId((int)$row['thread_category_id']);
             $thread->setDescription($row['thread_description']);
             $thread->setContent($row['content']);
             $thread->setCreatedBy((int)$row['created_by']);
+            $thread->setCreatedByName($row['created_by_name']);
             $thread->setCreatedAt($row['created_at']);
             $thread->setLastUpdate($row['last_update']);
 
@@ -112,6 +115,7 @@ class ForumRepository{
         }
 
         $thread = new Thread();
+        $thread->setId((int)$data['id']);
         $thread->setTitle($data['title']);
         $thread->setDescription($data['description']);
         $thread->setContent($data['content']);
@@ -145,7 +149,8 @@ class ForumRepository{
             c.id,
             c.content,
             c.created_at,
-            u.name AS created_by
+            c.created_by,
+            u.name AS created_by_name
             FROM comments c
             JOIN threads t
                 ON c.thread_id = t.id
@@ -161,7 +166,8 @@ class ForumRepository{
             $comment->setId((int)$row['id']);
             $comment->setContent($row['content']);
             $comment->setCreatedAt($row['created_at']);
-            $comment->setCreatedBy($row['created_by']);
+            $comment->setCreatedBy((int)$row['created_by']);
+            $comment->setCreatedByName($row['created_by_name']);
 
             $comments[]= $comment;
         }

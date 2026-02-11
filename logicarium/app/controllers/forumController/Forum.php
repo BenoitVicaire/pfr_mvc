@@ -3,7 +3,7 @@ namespace App\Controllers\ForumController;
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-require_once ROOT . 'templates/common/layout.php';
+// require_once ROOT . 'templates/common/layout.php';
 use App\Model\ForumModel\Category;
 use App\Model\CommentModel\Comment;
 use App\Model\ForumModel\ForumRepository;
@@ -17,12 +17,14 @@ class Forum{
         $categories = $forumRepository->getCategories();
         $threadsByCategory = $forumRepository->getThreadsByCategory();
         require ROOT . 'templates/forum/forum.php';
-    }
+        echo "check";
+        require ROOT . 'templates/common/layout.php';
+        }
 
     public function createNewThread(){
         $forumRepository = new ForumRepository(new DatabaseConnection());
         $categories = $forumRepository->getCategories();
-        require __DIR__ . '/../../../templates/forum/createThread.php';
+        require ROOT . 'templates/forum/createThread.php';
     }
 
     public function submitCreateThread(){
@@ -59,7 +61,8 @@ class Forum{
         $forumRepository = new ForumRepository(new DatabaseConnection());
         $thread = $forumRepository->getThreadById($thread_id);
         $comments = $forumRepository->getCommentsByThreadId($thread_id);
-        require __DIR__ . '/../../templates/forum/thread.php';
+        require ROOT . 'templates/forum/thread.php';
+        
     }
 
     public function createComment(int $thread_id){
@@ -68,7 +71,7 @@ class Forum{
         }
         $thread_id=$_GET['thread_id'];
         $forumRepository = new ForumRepository(new DatabaseConnection());
-        require __DIR__ . '/../../templates/forum/createComment.php';
+        require ROOT . 'templates/forum/createComment.php';
     }
 
     public function submitCreateComment(int $thread_id){

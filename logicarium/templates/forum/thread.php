@@ -1,25 +1,25 @@
-<?php $title=$thread->title;
+<?php $title=$thread->getTitle();
 $page="thread";
 ob_start() ?>
                         <!-- Partie thread -->
 <article class="thread">
         <!-- Titre du thread -->
     <header class="threadHeader">
-        <h1 class="threadTitle"><?= $thread->title ?></h1>
-        <a href="index.php?action=createComment&thread_id=<?= $thread->id ?>">Commenter</a>
+        <h1 class="threadTitle"><?= $thread->getTitle() ?></h1>
+        <a href="index.php?action=createComment&thread_id=<?= $thread->getId() ?>">Commenter</a>
     </header>
     
     <section class="threadBody">
         <!-- Contenu du thread -->
         <div class="threadContent">
-            <p><?= $thread->content ?></p>
+            <p><?= $thread->getContent() ?></p>
         </div>
         <!-- Detail du createur du thread -->
         <div class="userDetail">
             <img src="/pfr_new/logicarium/public/assets/images/avatar/Avatar_1.png" alt="avatar1">
-            <span class="threadAuthor">par <?= $thread->created_by ?></span>
+            <span class="threadAuthor">par <?= $thread->getCreatedBy() ?></span>
 
-            <time datetime="2025-01-28">Le <?= $thread->created_at ?></time>
+            <time datetime="2025-01-28">Le <?= $thread->getCreatedAt() ?></time>
         </div>
     </section>
 </article>
@@ -30,14 +30,14 @@ ob_start() ?>
             <section class="commentBody">
                 <!-- Contenu du commentaire -->
                 <div class="commentContent">
-                    <p><?= $comment->content ?></p>
+                    <p><?= $comment->getContent() ?></p>
                 </div>
                 <!-- Detail du createur du thread -->
                 <div class="userDetail">
                     <img src="/pfr_new/logicarium/public/assets/images/avatar/Avatar_1.png" alt="avatar1">
-                    <span class="threadAuthor">par <?= $comment->created_by ?></span>
+                    <span class="threadAuthor">par <?= $comment->getCreatedBy() ?></span>
 
-                    <time datetime="2025-01-28">Le <?= $comment->created_at ?></time>
+                    <time datetime="2025-01-28">Le <?= $comment->getCreatedAt() ?></time>
                 </div>
             </section>
         </article>

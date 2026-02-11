@@ -6,7 +6,7 @@ ob_start() ?>
         <select name="category_id" id="categorieSelect" required>
                 <option value="">--Veuillez choisir une catégorie</option>
             <?php foreach ($categories as $category){ ?>
-                <option value=<?= $category->id ?>><?= $category->name ?></option>
+                <option value=<?= $category->getId() ?>><?= $category->getName() ?></option>
             <?php } ?> 
         </select>
     </div>
