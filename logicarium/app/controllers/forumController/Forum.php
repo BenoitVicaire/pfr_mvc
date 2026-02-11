@@ -17,7 +17,6 @@ class Forum{
         $categories = $forumRepository->getCategories();
         $threadsByCategory = $forumRepository->getThreadsByCategory();
         require ROOT . 'templates/forum/forum.php';
-        echo "check";
         require ROOT . 'templates/common/layout.php';
         }
 
