@@ -3,7 +3,7 @@
 namespace App\Model\CommentModel;
 
 class Comment{
-    private int $id;
+    private ?int $id;
     private string $content;
     private string $created_at;
     private int $created_by;
@@ -12,17 +12,9 @@ class Comment{
      // Constructor
 
     public function __construct(
-        int $id,
-        string $content,
-        string $created_at,
-        int $created_by,
-        int $thread_id,
+        
         ){
-            $this->id = $id;
-            $this->content = $content;
-            $this->created_at = $created_at;
-            $this->created_by = $created_by;
-            $this->thread_id = $thread_id;
+            
         }
 
     public function getId(): int { return $this->id; }

@@ -2,7 +2,7 @@
 namespace App\Controllers\ContactController;
 
 
-use App\utils\Database\DatabaseConnection;
+use App\Utils\DatabaseConnection;
 
 class Contact
 {

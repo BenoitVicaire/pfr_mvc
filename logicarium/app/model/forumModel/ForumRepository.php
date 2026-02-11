@@ -2,7 +2,7 @@
 
 namespace App\Model\ForumModel;
 
-use App\Utils\Database\DatabaseConnection;
+use App\Utils\DatabaseConnection;
 use App\Model\ThreadModel\Thread;
 use App\Model\CategoryModel\Category;
 use App\Model\CommentModel\Comment;
@@ -66,11 +66,10 @@ class ForumRepository{
         $threadsByCategory=[];
         while (($row = $statement->fetch())){
             $thread = new Thread();
-            $thread->setId($row['thread_id']);
             $thread->setTitle($row['title']);
             $thread->setDescription($row['thread_description']);
             $thread->setContent($row['content']);
-            $thread->setCreatedBy($row['name']);
+            $thread->setCreatedBy((int)$row['created_by']);
             $thread->setCreatedAt($row['created_at']);
             $thread->setLastUpdate($row['last_update']);
 
@@ -113,14 +112,13 @@ class ForumRepository{
         }
 
         $thread = new Thread();
-        $thread->setId((int)$data['id']);
         $thread->setTitle($data['title']);
         $thread->setDescription($data['description']);
         $thread->setContent($data['content']);
         $thread->setCreatedBy((int)$data['created_by']);
         $thread->setCreatedByName($data['name']); 
-        $thread->setCreated_at($data['created_at']);
-        $thread->setLast_update($data['last_update']);
+        $thread->setCreatedAt($data['created_at']);
+        $thread->setLastUpdate($data['last_update']);
             
         return $thread;
     }
@@ -162,8 +160,8 @@ class ForumRepository{
             $comment = new Comment();
             $comment->setId((int)$row['id']);
             $comment->setContent($row['content']);
-            $comment->setCreated_at($row['created_at']);
-            $comment->setCreated_by($row['created_by']);
+            $comment->setCreatedAt($row['created_at']);
+            $comment->setCreatedBy($row['created_by']);
 
             $comments[]= $comment;
         }
@@ -177,8 +175,8 @@ class ForumRepository{
         );
     return $statement->execute([
         $comment->getContent(),
-        $comment->getCreated_by(),
-        $comment->getThread_id(),
+        $comment->getCreatedBy(),
+        $comment->getThreadId(),
         ]);
     }
 }

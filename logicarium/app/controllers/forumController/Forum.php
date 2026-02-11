@@ -5,23 +5,24 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 use App\Model\ForumModel\Category;
-use App\Model\ForumModel\Comment;
+use App\Model\CommentModel\Comment;
 use App\Model\ForumModel\ForumRepository;
-use App\Model\ForumModel\Thread;
-use App\Utils\Database\DatabaseConnection;
+use App\Model\ThreadModel\Thread;
+use App\Utils\DatabaseConnection;
+
 
 class Forum{
     public function displayForum(){
         $forumRepository = new ForumRepository(new DatabaseConnection());
         $categories = $forumRepository->getCategories();
         $threadsByCategory = $forumRepository->getThreadsByCategory();
-        require __DIR__ . '/../../templates/forum/forum.php';
+        require __DIR__ . '/../../../templates/forum/forum.php';
     }
 
     public function createNewThread(){
         $forumRepository = new ForumRepository(new DatabaseConnection());
         $categories = $forumRepository->getCategories();
-        require __DIR__ . '/../../templates/forum/createThread.php';
+        require __DIR__ . '/../../../templates/forum/createThread.php';
     }
 
     public function submitCreateThread(){

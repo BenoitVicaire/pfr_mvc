@@ -13,19 +13,9 @@ class User{
     // Constructor
 
     public function __construct(
-        int $id,
-        string $name,
-        string $password,
-        string $created_at,
-        string $email,
-        int $avatar
+
         ){
-            $this->id = $id;
-            $this->name = $name;
-            $this->password = $password;
-            $this->created_at = $created_at;
-            $this->email = $email;
-            $this->avatar = $avatar;
+
         }
 
     // Getter and Setter

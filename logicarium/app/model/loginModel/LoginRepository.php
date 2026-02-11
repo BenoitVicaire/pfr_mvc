@@ -2,7 +2,7 @@
 
 namespace App\Model\LoginModel;
 
-use App\Utils\Database\DatabaseConnection;
+use App\Utils\DatabaseConnection;
 use App\Model\UserModel\User;
 
 class LoginRepository{
@@ -28,7 +28,7 @@ class LoginRepository{
         $user->setId((int) $data['id']);
         $user->setEmail($data['email']);
         $user->setPassword($data['password']);
-        $user->setAvatar((int) $data['avatar']);
+        $user->setAvatar((int) $data['avatar_id']);
 
         return $user;
     }

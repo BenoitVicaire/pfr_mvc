@@ -1,7 +1,9 @@
 <?php 
 require('header.php');
 require('footer.php');
+$baseUrl = '/PFR_MVC/logicarium/public';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +13,9 @@ require('footer.php');
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=MedievalSharp&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../public/styles/style.css">
-    <link rel="icon" href="../public/assets/icons/gearIcon.svg">
-    <script type="module" src="../public/js/main.js"></script>
+    <link rel="stylesheet" href="<?= $baseUrl ?>/styles/style.css">
+    <link rel="icon" href="<?= $baseUrl ?>/assets/icons/gearIcon.svg">
+    <script type="module" src="<?= $baseUrl ?>/js/main.js"></script>
 </head>
 <body data-page="<?= $page ?? '' ?>">
     <?= $header ?>

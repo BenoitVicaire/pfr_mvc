@@ -2,7 +2,7 @@
 namespace App\Controllers\HomepageController;
 
 
-use App\utils\Database\DatabaseConnection;
+use App\Utils\DatabaseConnection;
 
 class Homepage
 {

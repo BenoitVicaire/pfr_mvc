@@ -4,7 +4,7 @@ namespace App\Model\ThreadModel;
 
 
 class Thread {
-    private int $id;
+    private ?int $id;
     private string $title;
     private int $category_id;
     private string $description;
@@ -17,31 +17,14 @@ class Thread {
 
     // Constructor 
     public function __construct(
-        int $id,
-        string $title,
-        int $category_id,
-        string $description,
-        string $content,
-        string $created_at,
-        int $created_by,
-        string $created_by_name,
-        string $last_update,
-        ?string $last_answer = null
+
     ) {
-        $this->id = $id;
-        $this->title = $title;
-        $this->category_id = $category_id;
-        $this->description = $description;
-        $this->content = $content;
-        $this->created_at = $created_at;
-        $this->created_by = $created_by;
-        $this->created_by_name = $created_by_name;
-        $this->last_update = $last_update;
-        $this->last_answer = $last_answer;
+
     }
 
     // Getters et setters 
     public function getId(): int { return $this->id; }
+    
     public function getTitle(): string { return $this->title; }
     public function setTitle(string $title): self { $this->title = $title; return $this; }
 

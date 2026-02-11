@@ -5,7 +5,7 @@ import { category } from "./forum.js";
 import { setLanguage } from "./langue.js";
 import { initLogin } from "./login.js";
 
-
+console.log('test');
 document.addEventListener("DOMContentLoaded", () => {
     initLangMenu();
     initUserMenu();

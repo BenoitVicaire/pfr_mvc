@@ -21,7 +21,7 @@ class Login {
             throw new \Exception('Identifiant incorrect');
         }
 
-        if(password_verify($password,$user['password'])){
+        if(password_verify($password,$user->getPassword())){
             $_SESSION['user'] = [
                 'id' => $user->getId(),
                 'email' => $user->getEmail(),
@@ -81,7 +81,7 @@ class Login {
     public function displayLoginPage():void{
         $succesMessage = $_SESSION['flash_succes'] ?? '';
         unset($_SESSION['flash_succes']);
-        require_once __DIR__ . '/../../templates/login.php';
+        require_once __DIR__ . '/../../../templates/login.php';
     }
 }
 
