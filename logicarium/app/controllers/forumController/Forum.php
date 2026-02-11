@@ -1,6 +1,5 @@
 <?php 
 namespace App\Controllers\ForumController;
-require ROOT . 'templates/common/layout.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -18,7 +17,6 @@ class Forum{
         $categories = $forumRepository->getCategories();
         $threadsByCategory = $forumRepository->getThreadsByCategory();
         require ROOT . 'templates/forum/forum.php';
-        require ROOT . 'templates/common/layout.php';
     }
 
     public function createNewThread(){

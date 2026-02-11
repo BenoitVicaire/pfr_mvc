@@ -62,3 +62,4 @@ ob_start() ?>
 </div>
 
 <?php $content = ob_get_clean(); ?>
+<?php require __DIR__ . '/../common/layout.php' ?>
