@@ -1,7 +1,7 @@
 <?php 
+$baseUrl = '/PFR_MVC/logicarium/public';
 require('header.php');
 require('footer.php');
-$baseUrl = '/PFR_MVC/logicarium/public';
 ?>
 
 <!DOCTYPE html>

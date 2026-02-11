@@ -3,7 +3,7 @@ namespace App\Controllers\ForumController;
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
+require_once ROOT . 'templates/common/layout.php';
 use App\Model\ForumModel\Category;
 use App\Model\CommentModel\Comment;
 use App\Model\ForumModel\ForumRepository;
@@ -16,7 +16,7 @@ class Forum{
         $forumRepository = new ForumRepository(new DatabaseConnection());
         $categories = $forumRepository->getCategories();
         $threadsByCategory = $forumRepository->getThreadsByCategory();
-        require __DIR__ . '/../../../templates/forum/forum.php';
+        require ROOT . 'templates/forum/forum.php';
     }
 
     public function createNewThread(){

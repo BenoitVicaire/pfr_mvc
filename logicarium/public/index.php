@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+define('BASE_URL', '/PFR_MVC/logicarium/public');
+define('ROOT', realpath(__DIR__ . '/../') . '/');
 require_once __DIR__ . '/../app/Utils/Autoloader.php';
 
 use App\Utils\Autoloader;
