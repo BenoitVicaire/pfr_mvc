@@ -34,7 +34,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
                 <button
                     class="menu_toggle"
                     id="menuToggle"
-                    aria-expanded="flase"
+                    aria-expanded="false"
                     aria-haspopup="menu"
                 >
                     <img src="assets/icons/user-solid-full.svg" alt="user icon">
@@ -61,6 +61,7 @@ if(isset($_SESSION['logged']) && $_SESSION['logged']){$loggedState=true;} ?>
                     id="langToggle"
                     aria-expanded="false"
                     aria-haspopup="listbox"
+                    aria-label="Choose language"
                 >
                     <span id="currentLang"></span>
                 </button> 

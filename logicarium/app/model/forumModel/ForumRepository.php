@@ -101,11 +101,15 @@ class ForumRepository{
                 t.content,
                 t.created_by,
                 u.name,
+                a.url AS avatar_url,
+                a.name AS avatar_name,
                 DATE_FORMAT(t.created_at,'%d/%m/%Y à %Hh%imin') as created_at,
                 DATE_FORMAT(t.last_update, '%d/%m/%Y à %Hh%imin') as last_update
             FROM threads t
             JOIN users u
                 ON u.id = t.created_by
+            LEFT JOIN avatar a
+                ON a.id = u.avatar_id
             WHERE t.id = :thread_id ;"
         );
         $statement->execute(['thread_id'=>$thread_id]);
@@ -113,6 +117,12 @@ class ForumRepository{
         if(!$data){
             throw new \Exception("Thread introuvable");
         }
+        $avatarUrl = !empty($data['avatar_url'])
+            ? $data['avatar_url']
+            : 'assets/images/avatar/Avatar_1.png';
+        $avatarName = !empty($data['avatar_name'])
+            ? $data['avatar_name']
+            : "avatar 1";
 
         $thread = new Thread();
         $thread->setId((int)$data['id']);
@@ -123,6 +133,8 @@ class ForumRepository{
         $thread->setCreatedByName($data['name']); 
         $thread->setCreatedAt($data['created_at']);
         $thread->setLastUpdate($data['last_update']);
+        $thread->setAvatarUrl($avatarUrl);
+        $thread->setAvatarName($avatarName);
             
         return $thread;
     }
@@ -185,4 +197,5 @@ class ForumRepository{
         $comment->getThreadId(),
         ]);
     }
+
 }

@@ -2,7 +2,6 @@
 $page="thread";
 ob_start() ?>
                         <!-- Partie thread -->
-<article class="thread">
         <!-- Titre du thread -->
     <header class="threadHeader">
         <h1 class="threadTitle"><?= $thread->getTitle() ?></h1>
@@ -16,8 +15,8 @@ ob_start() ?>
         </div>
         <!-- Detail du createur du thread -->
         <div class="userDetail">
-            <img src="/pfr_new/logicarium/public/assets/images/avatar/Avatar_1.png" alt="avatar1">
-            <span class="threadAuthor">par <?= $thread->getCreatedBy() ?></span>
+            <img src=<?= $thread->getAvatarUrl() ?> alt=<?= $thread->getAvatarName() ?>>
+            <span class="threadAuthor">par <?= $thread->getCreatedByName() ?></span>
 
             <time datetime="2025-01-28">Le <?= $thread->getCreatedAt() ?></time>
         </div>
@@ -34,8 +33,8 @@ ob_start() ?>
                 </div>
                 <!-- Detail du createur du thread -->
                 <div class="userDetail">
-                    <img src="/pfr_new/logicarium/public/assets/images/avatar/Avatar_1.png" alt="avatar1">
-                    <span class="threadAuthor">par <?= $comment->getCreatedBy() ?></span>
+                    <img src="/pfr_mvc/logicarium/public/assets/images/avatar/Avatar_1.png" alt="avatar1">
+                    <span class="threadAuthor">par <?= $comment->getCreatedByName() ?></span>
 
                     <time datetime="2025-01-28">Le <?= $comment->getCreatedAt() ?></time>
                 </div>

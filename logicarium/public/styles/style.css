@@ -458,6 +458,12 @@ footer a:hover {
 .forum .category a {
   cursor: pointer;
 }
+.forum .category {
+  border-bottom: solid black 2px;
+}
+.forum .category-title p {
+  font-size: smaller;
+}
 .forum .collapsible .thread {
   display: none;
 }
@@ -638,6 +644,7 @@ footer a:hover {
 .page-thread .threadBody, .page-thread .commentBody {
   display: flex;
   flex-direction: row;
+  border-bottom: solid black 2px;
 }
 .page-thread .threadContent, .page-thread .commentContent {
   margin: 7px;
@@ -662,9 +669,6 @@ footer a:hover {
   height: 118.2px;
   padding: 0;
   margin: 0;
-}
-.page-thread .comment {
-  border-bottom: solid black 2px;
 }
 
 .formCreateComment {

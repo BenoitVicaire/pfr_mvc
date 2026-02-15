@@ -40,6 +40,7 @@
     .threadBody, .commentBody{
         display: flex;
         flex-direction: row;
+        border-bottom: solid black 2px;
     }
     .threadContent, .commentContent{
         margin: 7px;
@@ -67,9 +68,5 @@
             padding: 0;
             margin: 0;
         }
-    }
-    // Comments
-    .comment{
-        border-bottom:solid black 2px;
     }
 }

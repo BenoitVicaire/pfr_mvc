@@ -59,6 +59,12 @@
         }
     }
     // collapsable menu
+    .category{
+        border-bottom: solid black 2px;
+    }
+    .category-title p {
+        font-size: smaller;
+    }
     .collapsible .thread{
         display: none;
     }

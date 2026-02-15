@@ -14,6 +14,8 @@ class Thread {
     private string $created_by_name;
     private string $last_update;
     private ?string $last_answer = null;
+    private ?string $avatar_url = null ;
+    private ?string $avatar_name = null;
 
     // Constructor 
     public function __construct(
@@ -53,5 +55,9 @@ class Thread {
     public function getLastAnswer(): ?string { return $this->last_answer; }
     public function setLastAnswer(?string $last_answer): self { $this->last_answer = $last_answer; return $this; }
     
+    public function getAvatarUrl(): string { return $this->avatar_url; }
+    public function setAvatarUrl(string $avatar_url): self { $this->avatar_url = $avatar_url; return $this; }
 
+    public function getAvatarName(): string { return $this->avatar_name; }
+    public function setAvatarName(string $avatar_name): self { $this->avatar_name = $avatar_name; return $this; }
 }
